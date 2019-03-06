@@ -10,6 +10,20 @@ TagManager:
   - roboGhost
   - 1stCollider
   - player
+  - redOne
+  - redHolder
+  - orangeOne
+  - orangeHolder
+  - yellowOne
+  - yellowHolder
+  - greenOne
+  - greenHolder
+  - blueOne
+  - blueHolder
+  - indigoOne
+  - indigoHolder
+  - violetOne
+  - violetHolder
   layers:
   - Default
   - TransparentFX
