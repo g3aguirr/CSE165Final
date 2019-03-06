@@ -7,21 +7,32 @@ public class roboghostbehavior : MonoBehaviour
     GameObject player;
 
     bool dead;
+    bool waking = true;
     public bool hit;
 
     public float force;
-   
+
+    
+
     public Vector3 hitPos;
     Vector3 diff;
+    Vector3 risingDiff;
+    Vector3 diff2;
+    Vector3 diff3;
     // Start is called before the first frame update
     void Start()
     {
+        
         player = GameObject.Find("Player");
         hit = false;
         diff = player.transform.position - transform.position;
+        risingDiff.x = transform.position.x;
+        risingDiff.z = transform.position.z;
+        risingDiff.y = player.transform.position.y;
+        diff2 = risingDiff - transform.position;
+        diff2 = Vector3.Normalize(diff2);
 
 
-        
     }
 
     // Update is called once per frame
@@ -29,7 +40,7 @@ public class roboghostbehavior : MonoBehaviour
     {
 
 
-       
+        
         if (hit)
         {
             //hit = false;
@@ -37,6 +48,7 @@ public class roboghostbehavior : MonoBehaviour
         
             dead = true;
             diff = Vector3.Normalize(diff);
+           
             diff.y = -.3f;
             //diff.x = diff.x ;
             //diff.z = diff.z ;
@@ -45,11 +57,24 @@ public class roboghostbehavior : MonoBehaviour
             transform.GetComponent<Rigidbody>().AddForceAtPosition(-diff/3, hitPos, ForceMode.Force);
         }
      
-        if (!dead)
+        if (!dead && !waking)
         {
             
             diff = player.transform.position - transform.position;
             transform.position = transform.position + (diff * Time.deltaTime);
+        }
+
+        if(waking)
+        {
+           
+            transform.position = transform.position + (diff2 * Time.deltaTime);
+     
+            float dist = Vector3.Distance(risingDiff, transform.position);
+            if(dist < 0.5)
+            {
+                waking = false;
+            }
+
         }
 
         

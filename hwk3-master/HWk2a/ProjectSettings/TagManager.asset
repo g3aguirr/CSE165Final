@@ -8,6 +8,8 @@ TagManager:
   - chair
   - ground
   - roboGhost
+  - 1stCollider
+  - player
   layers:
   - Default
   - TransparentFX

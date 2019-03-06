@@ -31,7 +31,9 @@ public class Raycasttest : MonoBehaviour {
     bool superman = false;
     bool teleArrow = true;
     bool canVibrate = true;
+    bool blueTime = false;
     float heldDownTime;
+    public float lasertime = .25f;
     float dist;
     private List<Color> originalColors = new List<Color>();
     Light lastHighlight;
@@ -43,20 +45,18 @@ public class Raycasttest : MonoBehaviour {
     Quaternion newRot2;
     private float timeCount = 0.0f;
 
+    public AudioClip laser;
+    private AudioSource source;
 
     int colorCounter = 0;
 
     void Start()
     {
+        source = GetComponent<AudioSource>();
         laserLine = GetComponent<LineRenderer>();
         chairPre = Resources.Load("chair") as GameObject;
         deskPre = Resources.Load("desk2") as GameObject;
-        //destinationPre = Resources.Load("Cylinder") as GameObject;
-      //  arrowTelePre = Resources.Load("Cylinder2") as GameObject;
-      //  destination = Instantiate(destinationPre) as GameObject;
-       // arrowTele = Instantiate(arrowTelePre) as GameObject;
-      //  destination.SetActive(false);
-        //arrowTele.SetActive(false);
+     
        
          transform.forward = GameObject.Find("CenterEyeAnchor").transform.forward;
     }
@@ -74,8 +74,31 @@ public class Raycasttest : MonoBehaviour {
         desklock = false;
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 10, Color.yellow);
         OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.RTouch);
+
+        if (blueTime)
+        {
+            lasertime -= Time.deltaTime;
+            if (lasertime >= 0)
+            {
+                laserLine.material.color = Color.blue;
+            }
+            else
+            {
+                lasertime = .25f;
+                blueTime = false;
+            }
+        }
+        else
+        {
+            laserLine.material.color = Color.red;
+        }
+       
+        
+        ///////////////SHOOTING//////////////////
         if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger, OVRInput.Controller.Touch) > 0.0f && canVibrate)
         {
+            blueTime = true;
+            source.PlayOneShot(laser, .5f);
             OVRInput.SetControllerVibration(0, 1, OVRInput.Controller.RTouch);
             canVibrate = false;
             
@@ -84,6 +107,8 @@ public class Raycasttest : MonoBehaviour {
         {
             canVibrate = true;
         }
+
+
             //destination.SetActive(false);
             //arrowTele.SetActive(false);
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward) * 10, out hit, 5000))
@@ -320,7 +345,7 @@ public class Raycasttest : MonoBehaviour {
             //{
             //    diff = Quaternion.AngleAxis(170, Vector3.up);
             
-            Debug.Log(diff.eulerAngles.y);
+            
 
 
             Quaternion finRot = (Quaternion.Slerp(transform.root.transform.rotation, transform.root.transform.rotation * diff, 0.01f));
