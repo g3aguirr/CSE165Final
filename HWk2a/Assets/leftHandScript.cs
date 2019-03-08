@@ -25,14 +25,17 @@ public class leftHandScript : MonoBehaviour
 	List<float> disArray;
 	float minD;
 	int index;
-	GameObject backPackObj;
+    public bool isHolding;
+    GameObject backPackObj;
 	
     // Start is called before the first frame update
     void Start()
     {
         backPackObj = GameObject.Find("/backPackObj");
 		backPackObj.SetActive(true);
-		
+
+       
+        isHolding = false;
     }
 
     // Update is called once per frame
@@ -420,14 +423,26 @@ public class leftHandScript : MonoBehaviour
 			}
             
         }
-		GameObject orgC = GameObject.Find("/backPackObj/orangeCube_small");
-		orgC.transform.position = bP3.transform.position + new Vector3(0,0,0.02f);
+
+        if (OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, OVRInput.Controller.Touch) > 0.0f)
+        {
+            isHolding = true;
+
+        }
+
+        else
+        {
+            isHolding = false;
+        }
+
+  //      GameObject orgC = GameObject.Find("/backPackObj/orangeCube_small");   /////////////////////////////////Commented out because error
+		//orgC.transform.position = bP3.transform.position + new Vector3(0,0,0.02f);
 		
-		GameObject redC = GameObject.Find("/backPackObj/redCube_small");
-		redC.transform.position = bP2.transform.position + new Vector3(0,0,0.02f);
+		//GameObject redC = GameObject.Find("/backPackObj/redCube_small");
+		//redC.transform.position = bP2.transform.position + new Vector3(0,0,0.02f);
 		
 		
-		Debug.Log(Vector3.Distance(bP15.transform.position,rightHand.transform.position));
+		//Debug.Log(Vector3.Distance(bP15.transform.position,rightHand.transform.position));
 		// Debug.Log(bP1.transform.position);
 		// Debug.Log(rightHand.transform.position);
     }

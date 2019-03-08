@@ -12,6 +12,7 @@ public class roboghostbehavior : MonoBehaviour
     public bool hit;
     float dyingtime = 2;
     public float force;
+    ParticleSystem sparks;
 
     
 
@@ -32,35 +33,37 @@ public class roboghostbehavior : MonoBehaviour
         risingDiff.y = player.transform.position.y;
         diff2 = risingDiff - transform.position;
         diff2 = Vector3.Normalize(diff2);
-
-
+        sparks = transform.GetChild(2).GetComponent<ParticleSystem>();
+       
     }
 
     // Update is called once per frame
     void Update()
     {
 
-
         
+
         if (hit)
         {
             //hit = false;
-           
-        
-            dead = true;
+
+            
+            dead = true;    
             diff = Vector3.Normalize(diff);
            
             diff.y = -.3f;
             //diff.x = diff.x ;
             //diff.z = diff.z ;
-            // transform.GetComponent<Rigidbody>().AddForce(new Vector3(diff.x, .5f, diff.z), ForceMode.Impulse);
-           
+            // transform.GetComponen`t<Rigidbody>().AddForce(new Vector3(diff.x, .5f, diff.z), ForceMode.Impulse);
+            
             transform.GetComponent<Rigidbody>().AddForceAtPosition(-diff/3, hitPos, ForceMode.Force);
             dying = true;
             if (dying)
             {
+                sparks.Emit(5);
                 transform.GetComponent<Rigidbody>().detectCollisions = false;
                 dyingtime -= Time.deltaTime;
+                
                 if (dyingtime <= 0)
                 {
                     Destroy(transform.gameObject);

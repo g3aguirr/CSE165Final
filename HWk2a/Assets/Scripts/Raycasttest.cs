@@ -59,6 +59,9 @@ public class Raycasttest : MonoBehaviour {
     Gradient gradient;
     Gradient gradient2;
 
+    ParticleSystem gunSparks;
+    GameObject gunSprks_GO;
+
     int colorCounter = 0;
 
     void Start()
@@ -79,6 +82,9 @@ public class Raycasttest : MonoBehaviour {
         
        
          transform.forward = GameObject.Find("CenterEyeAnchor").transform.forward;
+
+        gunSparks = GameObject.Find("Gunsparks").GetComponent<ParticleSystem>();
+        gunSprks_GO = GameObject.Find("Gunsparks");
     }
 
     
@@ -101,15 +107,21 @@ public class Raycasttest : MonoBehaviour {
             lasertime -= Time.deltaTime;
             if (lasertime >= 0)
             {
+                
                 laserLine.SetWidth(0.02f, 0.02f);
 
                 laserLine.material = laserMat;
-               
+                //gunSparks.Burst(2.0f, 100);
+                gunSparks.Emit(5);
+         
+               // gunSparks.Play();
             }
             else
             {
+               
                 lasertime = .25f;
                 blueTime = false;
+                //gunSparks.Pause();
             }
         }
         else
