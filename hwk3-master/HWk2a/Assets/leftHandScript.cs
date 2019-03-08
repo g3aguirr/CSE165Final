@@ -25,12 +25,13 @@ public class leftHandScript : MonoBehaviour
 	List<float> disArray;
 	float minD;
 	int index;
+	GameObject backPackObj;
 	
     // Start is called before the first frame update
     void Start()
     {
-        
-		
+        backPackObj = GameObject.Find("/backPackObj");
+		backPackObj.SetActive(true);
 		
     }
 
@@ -38,6 +39,7 @@ public class leftHandScript : MonoBehaviour
     void Update()
     {
 		rightHand = GameObject.Find("/Player/OVRCameraRig/LocalAvatar/hand_right/handMode");
+		
 		
 		
         if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.LTouch))
@@ -48,6 +50,11 @@ public class leftHandScript : MonoBehaviour
             {
                 GameObject prefab = Resources.Load("backPack") as GameObject;
                 backPack = Instantiate(prefab) as GameObject;
+				foreach (Transform child in backPackObj.transform)
+				{
+					child.gameObject.SetActive(true);
+				}
+				
 				
 				bP1 = GameObject.Find("/backPack(Clone)/Panel/group/1/light");
 				bP2 = GameObject.Find("/backPack(Clone)/Panel/group/2/light");
@@ -68,6 +75,7 @@ public class leftHandScript : MonoBehaviour
             }
 			backPack.transform.position = transform.position +  transform.TransformDirection(Vector3.forward) * 0.2f;// + new Vector3(0, 3, 0);
             backPack.transform.rotation = transform.rotation;
+			
 			
 			disArray = new List<float>();
 			disArray.Add(Vector3.Distance(bP1.transform.position,rightHand.transform.position));
@@ -402,24 +410,20 @@ public class leftHandScript : MonoBehaviour
 			if (temp!=null)
 			{
 				Destroy(backPack.gameObject);
-				Debug.Log(GameObject.FindWithTag("backPackObj"));
-				int times = 0;
-				while(times<20)
+				
+				foreach (Transform child in backPackObj.transform)
 				{
-					Debug.Log("sdfjoeijgoiejgoawjo");
-					Destroy(GameObject.FindWithTag("backPackObj"));
-					times += 1;
-					Debug.Log(times);
+					child.gameObject.SetActive(false);
 				}
 				
 				
 			}
             
         }
-		GameObject orgC = GameObject.Find("/orangeCube_small");
+		GameObject orgC = GameObject.Find("/backPackObj/orangeCube_small");
 		orgC.transform.position = bP3.transform.position + new Vector3(0,0,0.02f);
 		
-		GameObject redC = GameObject.Find("/redCube_small");
+		GameObject redC = GameObject.Find("/backPackObj/redCube_small");
 		redC.transform.position = bP2.transform.position + new Vector3(0,0,0.02f);
 		
 		
