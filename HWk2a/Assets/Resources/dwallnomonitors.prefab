@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 996172511, guid: 33d49bbd906ab01408c11d9e43145954, type: 3}
       propertyPath: m_Name
-      value: deskwall (6)
+      value: dwallnomonitors
       objectReference: {fileID: 0}
     - target: {fileID: 996172516, guid: 33d49bbd906ab01408c11d9e43145954, type: 3}
       propertyPath: m_LocalPosition.x
@@ -54,6 +54,10 @@ PrefabInstance:
     - target: {fileID: 996172516, guid: 33d49bbd906ab01408c11d9e43145954, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 996172514, guid: 33d49bbd906ab01408c11d9e43145954, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33d49bbd906ab01408c11d9e43145954, type: 3}

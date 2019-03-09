@@ -19,6 +19,7 @@ public class Raycasttest : MonoBehaviour {
     GameObject arrowTele;
     GameObject destinationPre;
     GameObject currGameObject = null; //used for highlighting
+    GameObject gun;
     
     Transform tempformer;
     Renderer rend = null;
@@ -32,6 +33,8 @@ public class Raycasttest : MonoBehaviour {
     bool teleArrow = true;
     bool canVibrate = true;
     bool blueTime = false;
+    public bool isHolding;
+    public bool isUsingGun = true;
     float heldDownTime;
     public float lasertime = .25f;
     float dist;
@@ -85,66 +88,86 @@ public class Raycasttest : MonoBehaviour {
 
         gunSparks = GameObject.Find("Gunsparks").GetComponent<ParticleSystem>();
         gunSprks_GO = GameObject.Find("Gunsparks");
+        gun = GameObject.Find("SciFiGun_Diffuse");
+        isHolding = false;
     }
 
     
     // Update is called once per frame
     void Update()
     {
-       
 
-
-
-        laserLine.enabled = true;
         RaycastHit hit = new RaycastHit();
 
-        desklock = false;
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 10, Color.yellow);
-        OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.RTouch);
-
-        if (blueTime)
+        if (isUsingGun)
         {
-            lasertime -= Time.deltaTime;
-            if (lasertime >= 0)
-            {
-                
-                laserLine.SetWidth(0.02f, 0.02f);
+            isHolding = false;
+            laserLine.enabled = true;
+            gun.SetActive(true);   
 
-                laserLine.material = laserMat;
-                //gunSparks.Burst(2.0f, 100);
-                gunSparks.Emit(5);
-         
-               // gunSparks.Play();
+            desklock = false;
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 10, Color.yellow);
+            OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.RTouch);
+
+            if (blueTime)
+            {
+                lasertime -= Time.deltaTime;
+                if (lasertime >= 0)
+                {
+
+                    laserLine.SetWidth(0.02f, 0.02f);
+
+                    laserLine.material = laserMat;
+                    //gunSparks.Burst(2.0f, 100);
+                    gunSparks.Emit(5);
+
+                    // gunSparks.Play();
+                }
+                else
+                {
+
+                    lasertime = .25f;
+                    blueTime = false;
+                    //gunSparks.Pause();
+                }
             }
             else
             {
-               
-                lasertime = .25f;
-                blueTime = false;
-                //gunSparks.Pause();
+                laserLine.SetWidth(0.005f, 0.005f);
+                laserLine.material = laserpointer;
+            }
+
+
+            ///////////////SHOOTING//////////////////
+            if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger, OVRInput.Controller.Touch) > 0.0f && canVibrate)
+            {
+                blueTime = true;
+                source.PlayOneShot(laser, .5f);
+                OVRInput.SetControllerVibration(0, 1, OVRInput.Controller.RTouch);
+                canVibrate = false;
+
+            }
+            if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger, OVRInput.Controller.Touch) == 0.0f && !canVibrate)
+            {
+                canVibrate = true;
             }
         }
-        else
-        {
-            laserLine.SetWidth(0.005f, 0.005f);
-            laserLine.material = laserpointer;
-        }
-       
-        
-        ///////////////SHOOTING//////////////////
-        if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger, OVRInput.Controller.Touch) > 0.0f && canVibrate)
-        {
-            blueTime = true;
-            source.PlayOneShot(laser, .5f);
-            OVRInput.SetControllerVibration(0, 1, OVRInput.Controller.RTouch);
-            canVibrate = false;
-            
-        }
-        if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger, OVRInput.Controller.Touch) == 0.0f && !canVibrate)
-        {
-            canVibrate = true;
-        }
 
+        else//////////////////////grabbing/////////////
+        {
+            laserLine.enabled = false;
+            gun.SetActive(false);
+            if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger, OVRInput.Controller.Touch) > 0.0f)
+            {
+                isHolding = true;
+
+            }
+
+            else
+            {
+                isHolding = false;
+            }
+        }
 
             //destination.SetActive(false);
             //arrowTele.SetActive(false);

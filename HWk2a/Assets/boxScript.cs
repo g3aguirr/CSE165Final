@@ -16,7 +16,7 @@ public class boxScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        leftHand = GameObject.Find("hand_left");
+        leftHand = GameObject.Find("hand_right");
     }
 
     void OnTriggerStay(Collider col)
@@ -24,7 +24,7 @@ public class boxScript : MonoBehaviour
         Debug.Log("collided");
         if (col.gameObject.tag == "left")
         {
-            if (leftHand.transform.GetComponent<leftHandScript>().isHolding)
+            if (leftHand.transform.GetComponent<Raycasttest>().isHolding)
             {
                 transform.position = col.gameObject.transform.position;
                 transform.rotation = col.gameObject.transform.rotation;
