@@ -10,8 +10,10 @@ public class roboghostbehavior : MonoBehaviour
     bool waking = true;
     bool dying = false;
     public bool hit;
+    bool hasSummoned;
     float dyingtime = 2;
     public float force;
+    public int hp;
     ParticleSystem sparks;
 
     
@@ -21,11 +23,15 @@ public class roboghostbehavior : MonoBehaviour
     Vector3 risingDiff;
     Vector3 diff2;
     Vector3 diff3;
+
+    public AudioClip summoningAudio;
+    private AudioSource source;
     // Start is called before the first frame update
     void Start()
     {
-        
+        source = GetComponent<AudioSource>();
         player = GameObject.Find("Player");
+        hasSummoned = false;
         hit = false;
         diff = player.transform.position - transform.position;
         risingDiff.x = transform.position.x;
@@ -41,34 +47,53 @@ public class roboghostbehavior : MonoBehaviour
     void Update()
     {
 
-        
+
 
         if (hit)
         {
-            //hit = false;
-
-            
-            dead = true;    
-            diff = Vector3.Normalize(diff);
-           
-            diff.y = -.3f;
-            //diff.x = diff.x ;
-            //diff.z = diff.z ;
-            // transform.GetComponen`t<Rigidbody>().AddForce(new Vector3(diff.x, .5f, diff.z), ForceMode.Impulse);
-            
-            transform.GetComponent<Rigidbody>().AddForceAtPosition(-diff/3, hitPos, ForceMode.Force);
-            dying = true;
-            if (dying)
+            hp--;
+            hit = false;
+            if (hp > 0)
             {
-                sparks.Emit(5);
-                transform.GetComponent<Rigidbody>().detectCollisions = false;
-                dyingtime -= Time.deltaTime;
                 
-                if (dyingtime <= 0)
+               
+                if (hp == 1)
                 {
-                    Destroy(transform.gameObject);
+                    transform.GetComponent<Renderer>().material = (Material)Resources.Load("V ghost", typeof(Material));
+                    transform.GetChild(0).transform.GetComponent<Renderer>().material = (Material)Resources.Load("V ghostHead", typeof(Material));
+                    Color newColor = new Color(0.5490196f, 0.2509804f, 0.6431373f, 1);
+                    transform.GetChild(1).transform.GetComponent<Light>().color = newColor;
                 }
-                
+            }
+            else
+            {
+                //hit = false;
+
+
+                dead = true;
+                hit = true;
+                diff = Vector3.Normalize(diff);
+
+                diff.y = -.3f;
+                //diff.x = diff.x ;
+                //diff.z = diff.z ;
+                // transform.GetComponen`t<Rigidbody>().AddForce(new Vector3(diff.x, .5f, diff.z), ForceMode.Impulse);
+
+                transform.GetComponent<Rigidbody>().AddForceAtPosition(-diff / 3, hitPos, ForceMode.Force);
+                dying = true;
+                if (dying)
+                {
+
+                    sparks.Emit(5);
+                    transform.GetComponent<Rigidbody>().detectCollisions = false;
+                    dyingtime -= Time.deltaTime;
+
+                    if (dyingtime <= 0)
+                    {
+                        Destroy(transform.gameObject);
+                    }
+
+                }
             }
         }
      
@@ -91,13 +116,21 @@ public class roboghostbehavior : MonoBehaviour
             }
 
         }
+        
+        if (transform.position.y > 0 && !hasSummoned)
+        {
+            hasSummoned = true;
+            source.PlayOneShot(summoningAudio, 1);
+
+            
+        }
 
         
     }
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag == "desk" )
+        if (col.gameObject.tag == "desk")
         {
             transform.GetComponent<Rigidbody>().detectCollisions = false;
         }

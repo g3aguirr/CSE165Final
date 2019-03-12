@@ -33,6 +33,7 @@ public class Raycasttest : MonoBehaviour {
     bool teleArrow = true;
     bool canVibrate = true;
     bool blueTime = false;
+    bool canShoot = true;
     public bool isHolding;
     public bool isUsingGun = true;
     float heldDownTime;
@@ -57,6 +58,7 @@ public class Raycasttest : MonoBehaviour {
     private float timeCount = 0.0f;
 
     public AudioClip laser;
+    public AudioClip afterLaserAudio;
     private AudioSource source;
 
     Gradient gradient;
@@ -142,7 +144,8 @@ public class Raycasttest : MonoBehaviour {
             if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger, OVRInput.Controller.Touch) > 0.0f && canVibrate)
             {
                 blueTime = true;
-                source.PlayOneShot(laser, .5f);
+                source.PlayOneShot(laser, .7f);
+                source.PlayOneShot(afterLaserAudio, .1f);
                 OVRInput.SetControllerVibration(0, 1, OVRInput.Controller.RTouch);
                 canVibrate = false;
 
@@ -243,81 +246,26 @@ public class Raycasttest : MonoBehaviour {
 
             if (hit.transform.tag == "roboGhost")
             {
-                if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger, OVRInput.Controller.Touch) > 0.0f)
+                if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger, OVRInput.Controller.Touch) > 0.0f && canShoot)
                 {
 
-
+                    canShoot = false;
                     roboghostbehavior script = hit.transform.GetComponent<roboghostbehavior>();
                     script.hit = true;
                     script.hitPos = hit.point;
                 }
+
+                if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger, OVRInput.Controller.Touch) == 0.0f && !canShoot)
+                {
+
+                    canShoot = true;
+            
+                }
+
+
             }
 
-            //if (hit.transform.tag == "ground") //////TELEPORTATION////
-            //{
-            //    if (teleArrow)
-            //    {
-            //        arrowTele.SetActive(true);
-            //        arrowTele.transform.position = hit.point;
-
-
-
-                //        if (OVRInput.Get(OVRInput.Button.PrimaryThumbstickRight))
-                //        {
-                //            var angles = arrowTele.transform.rotation.eulerAngles;
-                //            angles.y += Time.deltaTime * 100;
-                //            arrowTele.transform.rotation = Quaternion.Euler(angles);
-
-                //        }
-
-                //        if (OVRInput.Get(OVRInput.Button.PrimaryThumbstickLeft))
-                //        {
-                //            var angles = arrowTele.transform.rotation.eulerAngles;
-                //            angles.y -= Time.deltaTime * 100;
-                //            arrowTele.transform.rotation = Quaternion.Euler(angles);
-
-                //        }
-
-
-                //        Debug.Log("arrow loc " + arrowTele.transform.position);
-                //        Debug.Log("point loc " + hit.point);
-
-
-
-                //    }
-                //    else
-                //    {
-                //       // destination.SetActive(true);
-                //        //destination.transform.position = hit.point;
-                //    }
-
-                //    //destination.SetActive(true);
-                //    //destination.transform.position = hit.point;
-                //    float tempY = transform.root.transform.position.y;
-
-                //    if (OVRInput.Get(OVRInput.Axis1D.SecondaryHandTrigger, OVRInput.Controller.Touch) > 0.0f && !teleportLock)
-                //    {
-                //        teleportLock = true;
-                //        Vector3 pos = hit.point;
-                //        pos.y = tempY;
-                //        transform.root.transform.position = pos;
-                //        if (teleArrow)
-                //        {
-                //           // var angles2 = arrowTele.transform.rotation.eulerAngles;
-                //           // angles2.y += 180;
-                //           // arrowTele.transform.rotation = Quaternion.Euler(angles2);
-                //            transform.root.transform.rotation = arrowTele.transform.rotation;
-                //        }
-
-                //    }
-
-
-
-
-
-
-
-                //}
+           
         }
         else
         {

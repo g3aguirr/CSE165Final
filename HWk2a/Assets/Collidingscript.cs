@@ -5,7 +5,8 @@ using UnityEngine;
 public class Collidingscript : MonoBehaviour
 {
     public static bool collisionOne;
-    GameObject firstSet;
+   // GameObject firstSet;
+    public GameObject set;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,9 +25,9 @@ public class Collidingscript : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             collisionOne = true;
-            firstSet = GameObject.Find("firstSet");
+           // firstSet = GameObject.Find("firstSet");
             Debug.Log("collided");
-            foreach (Transform child in firstSet.transform)
+            foreach (Transform child in set.transform)
             {
                 child.gameObject.SetActive(true);
                
