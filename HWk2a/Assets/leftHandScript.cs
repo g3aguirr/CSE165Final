@@ -26,8 +26,22 @@ public class leftHandScript : MonoBehaviour
 	float minD;
 	int index;
     bool canSwitch;
+	static public bool putStuffInBP = false;
+	
+	static public string backPackBox;
    
     GameObject backPackObj;
+	
+	// GameObject firstSetEn;
+	// firstSetLeftNum = firstSetEn.transform.childCount;
+	// GameObject firstLast;
+	// Vector3 firstLastPosition;
+		
+	
+	GameObject theRedCube;
+	GameObject firstLast;
+	Vector3 firstLastPosition;
+	bool firstSetLastKilled;
 	
     // Start is called before the first frame update
     void Start()
@@ -129,7 +143,9 @@ public class leftHandScript : MonoBehaviour
 					bP12.GetComponent<Light>().enabled = false;
 					bP13.GetComponent<Light>().enabled = false;
 					bP14.GetComponent<Light>().enabled = false;
-					bP15.GetComponent<Light>().enabled = false;						
+					bP15.GetComponent<Light>().enabled = false;		
+					backPackBox = "1";		
+					putStuffInBP = true;
 				}
 				if (index+1 == 2)
 				{
@@ -148,6 +164,8 @@ public class leftHandScript : MonoBehaviour
 					bP13.GetComponent<Light>().enabled = false;
 					bP14.GetComponent<Light>().enabled = false;
 					bP15.GetComponent<Light>().enabled = false;		
+					backPackBox = "2";		
+					putStuffInBP = true;
 
 					
 				}
@@ -167,7 +185,10 @@ public class leftHandScript : MonoBehaviour
 					bP12.GetComponent<Light>().enabled = false;
 					bP13.GetComponent<Light>().enabled = false;
 					bP14.GetComponent<Light>().enabled = false;
-					bP15.GetComponent<Light>().enabled = false;						
+					bP15.GetComponent<Light>().enabled = false;
+					backPackBox = "3";		
+					putStuffInBP = true;
+					
 				}
 				if (index+1 == 4)
 				{
@@ -185,7 +206,9 @@ public class leftHandScript : MonoBehaviour
 					bP12.GetComponent<Light>().enabled = false;
 					bP13.GetComponent<Light>().enabled = false;
 					bP14.GetComponent<Light>().enabled = false;
-					bP15.GetComponent<Light>().enabled = false;						
+					bP15.GetComponent<Light>().enabled = false;		
+					backPackBox = "4";		
+					putStuffInBP = true;
 				}
 				if (index+1 == 5)
 				{
@@ -203,7 +226,9 @@ public class leftHandScript : MonoBehaviour
 					bP12.GetComponent<Light>().enabled = false;
 					bP13.GetComponent<Light>().enabled = false;
 					bP14.GetComponent<Light>().enabled = false;
-					bP15.GetComponent<Light>().enabled = false;						
+					bP15.GetComponent<Light>().enabled = false;	
+					backPackBox = "5";	
+					putStuffInBP = true;					
 				}
 				if (index+1 == 6)
 				{
@@ -221,7 +246,9 @@ public class leftHandScript : MonoBehaviour
 					bP12.GetComponent<Light>().enabled = false;
 					bP13.GetComponent<Light>().enabled = false;
 					bP14.GetComponent<Light>().enabled = false;
-					bP15.GetComponent<Light>().enabled = false;						
+					bP15.GetComponent<Light>().enabled = false;			
+					backPackBox = "6";	
+					putStuffInBP = true;
 				}
 				if (index+1 == 7)
 				{
@@ -239,7 +266,9 @@ public class leftHandScript : MonoBehaviour
 					bP12.GetComponent<Light>().enabled = false;
 					bP13.GetComponent<Light>().enabled = false;
 					bP14.GetComponent<Light>().enabled = false;
-					bP15.GetComponent<Light>().enabled = false;						
+					bP15.GetComponent<Light>().enabled = false;	
+					backPackBox = "7";
+					putStuffInBP = true;
 				}
 				if (index+1 == 8)
 				{
@@ -257,7 +286,9 @@ public class leftHandScript : MonoBehaviour
 					bP12.GetComponent<Light>().enabled = false;
 					bP13.GetComponent<Light>().enabled = false;
 					bP14.GetComponent<Light>().enabled = false;
-					bP15.GetComponent<Light>().enabled = false;						
+					bP15.GetComponent<Light>().enabled = false;		
+					backPackBox = "8";		
+					putStuffInBP = true;
 				}
 				if (index+1 == 9)
 				{
@@ -275,7 +306,9 @@ public class leftHandScript : MonoBehaviour
 					bP12.GetComponent<Light>().enabled = false;
 					bP13.GetComponent<Light>().enabled = false;
 					bP14.GetComponent<Light>().enabled = false;
-					bP15.GetComponent<Light>().enabled = false;						
+					bP15.GetComponent<Light>().enabled = false;	
+					backPackBox = "9";	
+					putStuffInBP = true;					
 				}
 				if (index+1 == 10)
 				{
@@ -293,7 +326,9 @@ public class leftHandScript : MonoBehaviour
 					bP12.GetComponent<Light>().enabled = false;
 					bP13.GetComponent<Light>().enabled = false;
 					bP14.GetComponent<Light>().enabled = false;
-					bP15.GetComponent<Light>().enabled = false;						
+					bP15.GetComponent<Light>().enabled = false;
+					backPackBox = "10";	
+					putStuffInBP = true;
 				}
 				if (index+1 == 11)
 				{
@@ -311,7 +346,10 @@ public class leftHandScript : MonoBehaviour
 					bP12.GetComponent<Light>().enabled = false;
 					bP13.GetComponent<Light>().enabled = false;
 					bP14.GetComponent<Light>().enabled = false;
-					bP15.GetComponent<Light>().enabled = false;						
+					bP15.GetComponent<Light>().enabled = false;			
+					backPackBox = "11";		
+					putStuffInBP = true;
+					
 				}
 				if (index+1 == 12)
 				{
@@ -329,7 +367,9 @@ public class leftHandScript : MonoBehaviour
 					bP12.GetComponent<Light>().enabled = true;
 					bP13.GetComponent<Light>().enabled = false;
 					bP14.GetComponent<Light>().enabled = false;
-					bP15.GetComponent<Light>().enabled = false;						
+					bP15.GetComponent<Light>().enabled = false;	
+					backPackBox = "12";		
+					putStuffInBP = true;
 				}
 				if (index+1 == 13)
 				{
@@ -347,7 +387,9 @@ public class leftHandScript : MonoBehaviour
 					bP12.GetComponent<Light>().enabled = false;
 					bP13.GetComponent<Light>().enabled = true;
 					bP14.GetComponent<Light>().enabled = false;
-					bP15.GetComponent<Light>().enabled = false;						
+					bP15.GetComponent<Light>().enabled = false;		
+					backPackBox = "13";	
+					putStuffInBP = true;					
 				}
 				if (index+1 == 14)
 				{
@@ -365,7 +407,9 @@ public class leftHandScript : MonoBehaviour
 					bP12.GetComponent<Light>().enabled = false;
 					bP13.GetComponent<Light>().enabled = false;
 					bP14.GetComponent<Light>().enabled = true;
-					bP15.GetComponent<Light>().enabled = false;						
+					bP15.GetComponent<Light>().enabled = false;	
+					backPackBox = "14";
+					putStuffInBP = true;
 				}
 				if (index+1 == 15)
 				{
@@ -383,7 +427,9 @@ public class leftHandScript : MonoBehaviour
 					bP12.GetComponent<Light>().enabled = false;
 					bP13.GetComponent<Light>().enabled = false;
 					bP14.GetComponent<Light>().enabled = false;
-					bP15.GetComponent<Light>().enabled = true;						
+					bP15.GetComponent<Light>().enabled = true;	
+					backPackBox = "15";		
+					putStuffInBP = true;
 				}
 						
 			}
@@ -404,6 +450,8 @@ public class leftHandScript : MonoBehaviour
 				bP13.GetComponent<Light>().enabled = false;
 				bP14.GetComponent<Light>().enabled = false;
 				bP15.GetComponent<Light>().enabled = false;	
+				backPackBox = "100";	
+				putStuffInBP = false;
 			}
 			
 			
@@ -441,16 +489,52 @@ public class leftHandScript : MonoBehaviour
             canSwitch = true;
         }
 
+		
 
-        //      GameObject orgC = GameObject.Find("/backPackObj/orangeCube_small");   /////////////////////////////////Commented out because error
-        //orgC.transform.position = bP3.transform.position + new Vector3(0,0,0.02f);
+		
+		GameObject firstSetEn = GameObject.Find("/firstSet");
+		int firstSetLeftNum = firstSetEn.transform.childCount;
 
-            //GameObject redC = GameObject.Find("/backPackObj/redCube_small");
-            //redC.transform.position = bP2.transform.position + new Vector3(0,0,0.02f);
+		
+		if (firstSetLeftNum == 1)
+		{
+			firstLast = firstSetEn.gameObject.transform.GetChild(0).gameObject;
+			firstLastPosition = firstLast.transform.position;
+			Debug.Log(firstSetLeftNum);
+			firstSetLastKilled = false;
+		}
+		else if (firstSetLeftNum == 0)
+		{
+			if (!firstSetLastKilled)
+			{
+				GameObject obj = Resources.Load("theRedCube") as GameObject;
+				theRedCube = Instantiate(obj) as GameObject;
+				firstLastPosition = new Vector3(83.74939f,1.6f,24.00222f);
+				theRedCube.transform.position = firstLastPosition;
+			}
+			
+			firstSetLastKilled = true;
+		}
+				
+			
+		if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.LTouch))
+		{
+			// GameObject firstSet = GameObject.Find("/firstSet");
+			// if(firstSetLeftNum==0)
+			// {
+				
+			// }
+			
+            GameObject orgC = GameObject.Find("/backPackObj/orangeCube_small");   /////////////////////////////////Commented out because error
+			orgC.transform.position = bP3.transform.position + new Vector3(0,0,0.02f);
 
-
-            //Debug.Log(Vector3.Distance(bP15.transform.position,rightHand.transform.position));
+            GameObject redC = GameObject.Find("/backPackObj/redCube_small");
+            redC.transform.position = bP2.transform.position + new Vector3(0,0,0.02f);
+		}
+		  
+            // Debug.Log(Vector3.Distance(bP15.transform.position,rightHand.transform.position));
             // Debug.Log(bP1.transform.position);
             // Debug.Log(rightHand.transform.position);
+		
     }
 }

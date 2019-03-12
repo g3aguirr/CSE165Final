@@ -26,6 +26,7 @@ TagManager:
   - violetHolder
   - backPackObj
   - left
+  - right
   layers:
   - Default
   - TransparentFX
