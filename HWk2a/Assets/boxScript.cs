@@ -6,11 +6,11 @@ public class boxScript : MonoBehaviour
 {
     public bool isHeld;
     GameObject rightHand;
-	static Vector3 orignalSize;
-	static GameObject bPplace;
+	Vector3 orignalSize;
+	GameObject bPplace;
 	GameObject bPObj;
 	
-	static bool inBP;
+	bool inBP;
 	string putRedBoxNum = "1";
     // Start is called before the first frame update
     void Start()
@@ -27,7 +27,7 @@ public class boxScript : MonoBehaviour
     {
         rightHand = GameObject.Find("hand_right");
 
-		Debug.Log("bPplace:" + bPplace);
+		// Debug.Log("bPplace:" + bPplace);
 		if(GameObject.Find("/backPack(Clone)") != null)
 		{
 			if (inBP)

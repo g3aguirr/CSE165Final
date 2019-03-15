@@ -34,7 +34,6 @@ public class fish : MonoBehaviour
 		if( p1.transform.localRotation.z == 0 && p2.transform.localRotation.z == 0 && p3.transform.localRotation.z == 0 && p4.transform.localRotation.z == 0)
 		{
 			BLUE = true;
-			Debug.Log(BLUE);
 			// could implement sound effect here indicate successful 
 		}
 

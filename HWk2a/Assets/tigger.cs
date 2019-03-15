@@ -12,6 +12,19 @@ public class tigger : MonoBehaviour
 	static int blueOne;
 	static int indigoOne;
 	static int violetOne;
+	public AudioClip bingoClip;
+	private AudioSource bingoSource;
+	
+	
+	bool initRed = false;
+	bool initOrange = false;
+	bool initYellow = false;
+	bool initGreen = false;
+	bool initBlue = false;
+	bool initIndigo = false;
+	bool initViolet = false;
+
+	
 
     void OnTriggerEnter(Collider other)
     {
@@ -72,6 +85,11 @@ public class tigger : MonoBehaviour
 		blueOne = 0;
 		indigoOne = 0;
 		violetOne = 0;
+		GetComponent<AudioSource>().mute = true;
+		bingoSource = GetComponent<AudioSource>();
+		// GetComponent<AudioSource>().mute = false;
+		
+		
     }
 
     // Update is called once per frame
@@ -80,51 +98,132 @@ public class tigger : MonoBehaviour
 
         if((redOne + tiggerBox.redHolder) == 2)
 		{
-			
-			light = GameObject.Find("/redLight/light");
-			light.GetComponent<Light>().enabled = true;
+			if(!initRed)
+			{
+				GetComponent<AudioSource>().mute = false;
+				bingoSource.Play();
+				GameObject CUBE = GameObject.Find("/theRedCube(Clone)");
+				CUBE.GetComponent<boxscriptV2>().enabled = false;
+				GameObject CUBEPUT = GameObject.Find("/tableTrigger/putCard/R/Cube");
+				CUBE.transform.position = CUBEPUT.transform.position + new Vector3(0,0.1f,0);
+				CUBE.transform.rotation = Quaternion.Euler(0, 30, 45);		
+				CUBE.transform.localScale = new Vector3(0.15f,0.15f,0.15f); 
+				light = GameObject.Find("/tablePuzzleHint/redLight/light");
+				light.GetComponent<Light>().enabled = true;
+			}
+			initRed = true;
 		}
+
+		
 		
 		if((orangeOne + tiggerBox.orangeHolder) == 2)
 		{
-			
-			light = GameObject.Find("/orangeLight/light");
-			light.GetComponent<Light>().enabled = true;
+			if(!initOrange)
+			{
+				GetComponent<AudioSource>().mute = false;
+				bingoSource.Play();
+				GameObject CUBE = GameObject.Find("/theOrangeCube(Clone)");
+				CUBE.GetComponent<boxscriptV2>().enabled = false;
+				GameObject CUBEPUT = GameObject.Find("/tableTrigger/putCard/O/Cube");
+				CUBE.transform.position = CUBEPUT.transform.position + new Vector3(0,0.1f,0);
+				CUBE.transform.rotation = Quaternion.Euler(0, 30, 45);		
+				CUBE.transform.localScale = new Vector3(0.15f,0.15f,0.15f); 
+				light = GameObject.Find("/tablePuzzleHint/orangeLight/light");
+				light.GetComponent<Light>().enabled = true;
+			}
+			initOrange = true;
 		}
+
 		
 		if((yellowOne + tiggerBox.yellowHolder) == 2)
 		{
-			
-			light = GameObject.Find("/yellowLight/light");
-			light.GetComponent<Light>().enabled = true;
+			if(!initYellow)
+			{
+				GetComponent<AudioSource>().mute = false;
+				bingoSource.Play();
+				GameObject CUBE = GameObject.Find("/theYellowCube(Clone)");
+				CUBE.GetComponent<boxscriptV2>().enabled = false;
+				GameObject CUBEPUT = GameObject.Find("/tableTrigger/putCard/Y/Cube");
+				CUBE.transform.position = CUBEPUT.transform.position + new Vector3(0,0.1f,0);
+				CUBE.transform.rotation = Quaternion.Euler(0, 30, 45);		
+				CUBE.transform.localScale = new Vector3(0.15f,0.15f,0.15f); 
+				light = GameObject.Find("/tablePuzzleHint/yellowLight/light");
+				light.GetComponent<Light>().enabled = true;
+			}
+			initYellow = true;
+
 		}
 		
 		if((greenOne + tiggerBox.greenHolder) == 2)
 		{
-			
-			light = GameObject.Find("/greenLight/light");
-			light.GetComponent<Light>().enabled = true;
+			if(!initGreen)
+			{
+				GetComponent<AudioSource>().mute = false;
+				bingoSource.Play();
+				GameObject CUBE = GameObject.Find("/theGreenCube(Clone)");
+				CUBE.GetComponent<boxscriptV2>().enabled = false;
+				GameObject CUBEPUT = GameObject.Find("/tableTrigger/putCard/G/Cube");
+				CUBE.transform.position = CUBEPUT.transform.position + new Vector3(0,0.1f,0);
+				CUBE.transform.rotation = Quaternion.Euler(0, 30, 45);		
+				CUBE.transform.localScale = new Vector3(0.15f,0.15f,0.15f); 
+				light = GameObject.Find("/tablePuzzleHint/greenLight/light");
+				light.GetComponent<Light>().enabled = true;
+			}
+			initGreen = true;
 		}
 		
 		if((blueOne + tiggerBox.blueHolder) == 2)
 		{
-			
-			light = GameObject.Find("/blueLight/light");
-			light.GetComponent<Light>().enabled = true;
+			if(!initBlue)
+			{
+				GetComponent<AudioSource>().mute = false;
+				bingoSource.Play();
+				GameObject CUBE = GameObject.Find("/theBlueCube(Clone)");
+				CUBE.GetComponent<boxscriptV2>().enabled = false;
+				GameObject CUBEPUT = GameObject.Find("/tableTrigger/putCard/B/Cube");
+				CUBE.transform.position = CUBEPUT.transform.position + new Vector3(0,0.1f,0);
+				CUBE.transform.rotation = Quaternion.Euler(0, 30, 45);		
+				CUBE.transform.localScale = new Vector3(0.15f,0.15f,0.15f); 
+				light = GameObject.Find("/tablePuzzleHint/blueLight/light");
+				light.GetComponent<Light>().enabled = true;
+			}
+			initBlue = true;
 		}
 		
 		if((indigoOne + tiggerBox.indigoHolder) == 2)
 		{
-			
-			light = GameObject.Find("/indigoLight/light");
-			light.GetComponent<Light>().enabled = true;
+			if(!initIndigo)
+			{
+				GetComponent<AudioSource>().mute = false;
+				bingoSource.Play();
+				GameObject CUBE = GameObject.Find("/theIndigoCube(Clone)");
+				CUBE.GetComponent<boxscriptV2>().enabled = false;
+				GameObject CUBEPUT = GameObject.Find("/tableTrigger/putCard/I/Cube");
+				CUBE.transform.position = CUBEPUT.transform.position + new Vector3(0,0.1f,0);
+				CUBE.transform.rotation = Quaternion.Euler(0, 30, 45);		
+				CUBE.transform.localScale = new Vector3(0.15f,0.15f,0.15f); 
+				light = GameObject.Find("/tablePuzzleHint/indigoLight/light");
+				light.GetComponent<Light>().enabled = true;
+			}
+			initIndigo = true;
 		}
 		
 		if((violetOne + tiggerBox.violetHolder) == 2)
 		{
-			
-			light = GameObject.Find("/violetLight/light");
-			light.GetComponent<Light>().enabled = true;
+			if(!initViolet)
+			{
+				GetComponent<AudioSource>().mute = false;
+				bingoSource.Play();
+				GameObject CUBE = GameObject.Find("/theVioletCube(Clone)");
+				CUBE.GetComponent<boxscriptV2>().enabled = false;
+				GameObject CUBEPUT = GameObject.Find("/tableTrigger/putCard/V/Cube");
+				CUBE.transform.position = CUBEPUT.transform.position + new Vector3(0,0.1f,0);
+				CUBE.transform.rotation = Quaternion.Euler(0, 30, 45);		
+				CUBE.transform.localScale = new Vector3(0.15f,0.15f,0.15f); 
+				light = GameObject.Find("/tablePuzzleHint/indigoLight/light");
+				light.GetComponent<Light>().enabled = true;
+			}
+			initViolet = true;
 		}
     }
 }

@@ -4,11 +4,34 @@ using UnityEngine;
 
 public class secretRoomTrigger : MonoBehaviour
 {
+	GameObject rightHand;
 	Collider m_ObjectCollider;
     // Start is called before the first frame update
+	void OnTriggerStay(Collider col)
+    {
+		
+        // Debug.Log("collided");
+        if (col.gameObject.tag == "right")
+        {
+			// if (rightHand.transform.GetComponent<Raycasttest>().isHolding)
+            // {
+
+			GameObject secretRoomWall = GameObject.Find("/secretRoomWall");
+			secretRoomWall.GetComponent<Rigidbody>().velocity = new Vector3(0, 2, 0);
+				// GameObject secretRoom = GameObject.Find("/secretRoom");
+				// secretRoom.GetComponent<Rigidbody>().velocity = new Vector3(0, 2, 0);
+			// }
+		
+		
+        }
+
+    }
+	
+	
     void Start()
     {
         m_ObjectCollider = GetComponent<Collider>();
+		rightHand = GameObject.Find("hand_right");
     }
 
     // Update is called once per frame

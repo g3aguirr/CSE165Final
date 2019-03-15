@@ -111,8 +111,8 @@ public class leftHandScript : MonoBehaviour
 			disArray.Add(Vector3.Distance(bP13.transform.position,rightHand.transform.position));
 			disArray.Add(Vector3.Distance(bP14.transform.position,rightHand.transform.position));
 			disArray.Add(Vector3.Distance(bP15.transform.position,rightHand.transform.position));
-			disArray.Add(1000);
-			for(int i = 0; i < disArray.Count - 1; i ++) {
+			// disArray.Add(1000);
+			for(int i = 0; i <= disArray.Count - 1; i ++) {
 				if(i == 0) {
 					minD = disArray[i];
 					index = 0;
@@ -126,7 +126,7 @@ public class leftHandScript : MonoBehaviour
 			
 			if (minD<0.06f)
 			{
-				Debug.Log("index: "+index);
+				
 				if (index+1 == 1)
 				{
 					bP1.GetComponent<Light>().enabled = true;
@@ -248,7 +248,7 @@ public class leftHandScript : MonoBehaviour
 					bP14.GetComponent<Light>().enabled = false;
 					bP15.GetComponent<Light>().enabled = false;			
 					backPackBox = "6";	
-					putStuffInBP = true;
+					putStuffInBP = true;	
 				}
 				if (index+1 == 7)
 				{
@@ -478,10 +478,14 @@ public class leftHandScript : MonoBehaviour
            if( GameObject.Find("hand_right").transform.GetComponent<Raycasttest>().isUsingGun)
             {
                 GameObject.Find("hand_right").transform.GetComponent<Raycasttest>().isUsingGun = false;
+				GameObject.Find("hand_right").transform.GetComponent<BoxCollider>().center =new Vector3(0,0,0);
+				GameObject.Find("hand_right").transform.GetComponent<BoxCollider>().size =new Vector3(0.05f,0.05f,0.13f);
             }
             else
             {
                 GameObject.Find("hand_right").transform.GetComponent<Raycasttest>().isUsingGun = true ;
+				GameObject.Find("hand_right").transform.GetComponent<BoxCollider>().center =new Vector3(0,0,5);
+				GameObject.Find("hand_right").transform.GetComponent<BoxCollider>().size =new Vector3(0.05f,0.05f,10.05f);
             }
         }
         if (OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, OVRInput.Controller.Touch) == 0.0f && !canSwitch)
@@ -517,20 +521,20 @@ public class leftHandScript : MonoBehaviour
 		}
 				
 			
-		if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.LTouch))
-		{
-			// GameObject firstSet = GameObject.Find("/firstSet");
-			// if(firstSetLeftNum==0)
-			// {
+		// if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.LTouch))
+		// {
+			// // GameObject firstSet = GameObject.Find("/firstSet");
+			// // if(firstSetLeftNum==0)
+			// // {
 				
-			// }
+			// // }
 			
-            GameObject orgC = GameObject.Find("/backPackObj/orangeCube_small");   /////////////////////////////////Commented out because error
-			orgC.transform.position = bP3.transform.position + new Vector3(0,0,0.02f);
+            // GameObject orgC = GameObject.Find("/backPackObj/orangeCube_small");   /////////////////////////////////Commented out because error
+			// orgC.transform.position = bP3.transform.position + new Vector3(0,0,0.02f);
 
-            GameObject redC = GameObject.Find("/backPackObj/redCube_small");
-            redC.transform.position = bP2.transform.position + new Vector3(0,0,0.02f);
-		}
+            // GameObject redC = GameObject.Find("/backPackObj/redCube_small");
+            // redC.transform.position = bP2.transform.position + new Vector3(0,0,0.02f);
+		// }
 		  
             // Debug.Log(Vector3.Distance(bP15.transform.position,rightHand.transform.position));
             // Debug.Log(bP1.transform.position);
