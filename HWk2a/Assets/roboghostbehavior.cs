@@ -59,11 +59,52 @@ public class roboghostbehavior : MonoBehaviour
                
                 if (hp == 1)
                 {
-                    transform.GetComponent<Renderer>().material = (Material)Resources.Load("V ghost", typeof(Material));
-                    transform.GetChild(0).transform.GetComponent<Renderer>().material = (Material)Resources.Load("V ghostHead", typeof(Material));
+                    transform.GetComponent<Renderer>().material = (Material)Resources.Load("ghost Materials/V ghost", typeof(Material));
+                    transform.GetChild(0).transform.GetComponent<Renderer>().material = (Material)Resources.Load("ghost Materials/V ghostHead", typeof(Material));
                     Color newColor = new Color(0.5490196f, 0.2509804f, 0.6431373f, 1);
                     transform.GetChild(1).transform.GetComponent<Light>().color = newColor;
                 }
+
+                if (hp == 2)
+                {
+                    transform.GetComponent<Renderer>().material = (Material)Resources.Load("ghost Materials/I ghost", typeof(Material));
+                    transform.GetChild(0).transform.GetComponent<Renderer>().material = (Material)Resources.Load("ghost Materials/I ghostHead", typeof(Material));
+                    Color newColor = new Color(0.459779f, 0.2509804f, 0.6431373f, 1);
+                    transform.GetChild(1).transform.GetComponent<Light>().color = newColor;
+                }
+
+                if (hp == 3)
+                {
+                    transform.GetComponent<Renderer>().material = (Material)Resources.Load("ghost Materials/B ghost", typeof(Material));
+                    transform.GetChild(0).transform.GetComponent<Renderer>().material = (Material)Resources.Load("ghost Materials/B ghostHead", typeof(Material));
+                    Color newColor = new Color(0.2509804f, 0.62166f, 0.6431373f, 1);
+                    transform.GetChild(1).transform.GetComponent<Light>().color = newColor;
+                }
+
+                if (hp == 4)
+                {
+                    transform.GetComponent<Renderer>().material = (Material)Resources.Load("ghost Materials/G ghost", typeof(Material));
+                    transform.GetChild(0).transform.GetComponent<Renderer>().material = (Material)Resources.Load("ghost Materials/G ghostHead", typeof(Material));
+                    Color newColor = new Color(0, 0.8235294f, 0.2039216f, 1);
+                    transform.GetChild(1).transform.GetComponent<Light>().color = newColor;
+                }
+
+                if (hp == 5)
+                {
+                    transform.GetComponent<Renderer>().material = (Material)Resources.Load("ghost Materials/Y ghost", typeof(Material));
+                    transform.GetChild(0).transform.GetComponent<Renderer>().material = (Material)Resources.Load("ghost Materials/Y ghostHead", typeof(Material));
+                    Color newColor = new Color(0.7137255f, 0.8627451f, 0, 1);
+                    transform.GetChild(1).transform.GetComponent<Light>().color = newColor;
+                }
+
+                if (hp == 6)
+                {
+                    transform.GetComponent<Renderer>().material = (Material)Resources.Load("ghost Materials/O ghost", typeof(Material));
+                    transform.GetChild(0).transform.GetComponent<Renderer>().material = (Material)Resources.Load("ghost Materials/O ghostHead", typeof(Material));
+                    Color newColor = new Color(0.8627451f, 0.5647059f, 0, 1);
+                    transform.GetChild(1).transform.GetComponent<Light>().color = newColor;
+                }
+
             }
             else
             {

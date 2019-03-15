@@ -27,7 +27,8 @@ public class Raycasttest : MonoBehaviour {
     bool desklock; //locks abiliy to spawn desk
     bool objectlock = false; //object is skewed
     bool teleportLock = false;
-    bool continuousMotion = false;
+    public static bool continuousMotion = true;
+    public static bool stop = false;
     bool stored = false;
     bool superman = false;
     bool teleArrow = true;
@@ -82,8 +83,7 @@ public class Raycasttest : MonoBehaviour {
 
        // laserLine.colorGradient = gradient;
        
-        chairPre = Resources.Load("chair") as GameObject;
-        deskPre = Resources.Load("desk2") as GameObject;
+        
         
        
          transform.forward = GameObject.Find("CenterEyeAnchor").transform.forward;
@@ -176,73 +176,9 @@ public class Raycasttest : MonoBehaviour {
             //arrowTele.SetActive(false);
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward) * 10, out hit, 5000))
         {
-            if (currGameObject != null && currGameObject != hit.transform.gameObject && lastHighlight != null)
-            {
-                lastHighlight.enabled = false;
-            }
-            currGameObject = hit.transform.gameObject;
-            if (hit.transform.tag == "desk")
-            {
+            
 
-                lastHighlight = hit.collider.gameObject.GetComponent<Light>();
-                hit.collider.gameObject.GetComponent<Light>().enabled = true;
-
-                desklock = true;
-                if (OVRInput.Get(OVRInput.RawButton.A))
-                {
-
-                    if (!objectlock)
-                    {
-                        dist = Vector3.Distance(hit.transform.position, transform.position);
-                        objectlock = true;
-                    }
-
-                    hit.transform.position = (transform.position + (transform.TransformDirection(Vector3.forward).normalized * dist));
-
-
-
-                }
-                if (OVRInput.GetUp(OVRInput.RawButton.A))
-                {
-                    objectlock = false;
-
-                }
-
-            }
-
-            if (hit.transform.tag == "chair")
-            {
-                //foreach (Renderer r in hit.collider.gameObject.GetComponentsInChildren<Renderer>())
-                //{
-                //    originalColors.Add(r.material.color);
-                //    r.material.color = Color.red;
-
-                //}  
-                lastHighlight = hit.collider.gameObject.GetComponent<Light>();
-                hit.collider.gameObject.GetComponent<Light>().enabled = true;
-
-                desklock = true;
-                if (OVRInput.Get(OVRInput.RawButton.A))
-                {
-
-                    if (!objectlock)
-                    {
-                        dist = Vector3.Distance(hit.transform.position, transform.position);
-                        objectlock = true;
-                    }
-
-                    hit.transform.position = (transform.position + (transform.TransformDirection(Vector3.forward).normalized * dist));
-
-
-
-                }
-                if (OVRInput.GetUp(OVRInput.RawButton.A))
-                {
-                    objectlock = false;
-
-                }
-
-            }
+           
 
             if (hit.transform.tag == "roboGhost")
             {
@@ -267,72 +203,30 @@ public class Raycasttest : MonoBehaviour {
 
            
         }
-        else
-        {
-            if (lastHighlight != null)
-                lastHighlight.enabled = false;
-
-        }
-        ////DESK////
-        if (OVRInput.GetDown(OVRInput.RawButton.A) && !desklock)
-        {
-            
-            heldDownTime = Time.deltaTime;
-            desk = Instantiate(deskPre) as GameObject;
-           
-
-        }
-
-        if (OVRInput.Get(OVRInput.RawButton.A) && !desklock)
-        {
-            desk.transform.position = (transform.position + (transform.TransformDirection(Vector3.forward).normalized * 2));
-           
        
-            desk.transform.rotation = transform.rotation;
-            desk.transform.Rotate(-90, 90, 0);
-        }
+       
 
 
 
-        //if (OVRInput.GetUp(OVRInput.RawButton.A)){
-        //    heldDownTime = Time.deltaTime;
-        //    desk = Instantiate(deskPre) as GameObject;
+        
 
-        //    desk.transform.position = (transform.position + (transform.TransformDirection(Vector3.forward).normalized * 2));
-        //}
-
-
-        /////CHAIR///////
-        if (OVRInput.GetDown(OVRInput.RawButton.B))
-        {
-            heldDownTime = Time.deltaTime;
-            chair = Instantiate(chairPre) as GameObject;
-
-
-        }
-
-        if (OVRInput.Get(OVRInput.RawButton.B))
-        {
-            chair.transform.position = (transform.position + (transform.TransformDirection(Vector3.forward).normalized * 2));
-
-
-            chair.transform.rotation = transform.rotation;
-            chair.transform.Rotate(-90, 90, 0);
-        }
+      
 
         if (OVRInput.Get(OVRInput.Axis1D.SecondaryHandTrigger, OVRInput.Controller.Touch) == 0.0f && !continuousMotion)
         {
             teleportLock = false;
            
         }
-        if (OVRInput.Get(OVRInput.Axis1D.SecondaryHandTrigger, OVRInput.Controller.Touch) == 0.0f && continuousMotion)
+        if (OVRInput.Get(OVRInput.Axis1D.SecondaryHandTrigger, OVRInput.Controller.Touch) == 0.0f || stop)
         {
        
             stored = false;
+            stop = false;
         }
         //////////////////////////////              WALKING            /////////////////////////////
-        if (OVRInput.Get(OVRInput.Axis1D.SecondaryHandTrigger, OVRInput.Controller.Touch) > 0.0f && continuousMotion)
+        if (OVRInput.Get(OVRInput.Axis1D.SecondaryHandTrigger, OVRInput.Controller.Touch) > 0.0f && continuousMotion && !stop)
         {
+
             if (!stored)
             {
                 initialPos.x = transform.localPosition.x;
@@ -446,25 +340,7 @@ public class Raycasttest : MonoBehaviour {
         }
 
 
-        if (OVRInput.GetDown(OVRInput.RawButton.Y))
-        {
-            if (!superman && continuousMotion)
-            {
-                superman = true;
-                sBG.SetActive(true);
-                sIMG.SetActive(true);
-                wBG.SetActive(false);
-
-            }
-            else if(superman && continuousMotion)
-            {
-                superman = false;
-                sBG.SetActive(false);
-                sIMG.SetActive(false);
-                wBG.SetActive(true);
-            }
-            
-        }
+       
 
     }
 
