@@ -67,7 +67,7 @@ public class Raycasttest : MonoBehaviour {
 
     ParticleSystem gunSparks;
     GameObject gunSprks_GO;
-
+    
     int colorCounter = 0;
 
     void Start()
@@ -105,7 +105,8 @@ public class Raycasttest : MonoBehaviour {
         {
             isHolding = false;
             laserLine.enabled = true;
-            gun.SetActive(true);   
+            gun.SetActive(true);
+            transform.GetComponent<BoxCollider>().enabled = false;
 
             desklock = false;
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 10, Color.yellow);
@@ -160,6 +161,7 @@ public class Raycasttest : MonoBehaviour {
         {
             laserLine.enabled = false;
             gun.SetActive(false);
+            transform.GetComponent<BoxCollider>().enabled = true;
             if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger, OVRInput.Controller.Touch) > 0.0f)
             {
                 isHolding = true;

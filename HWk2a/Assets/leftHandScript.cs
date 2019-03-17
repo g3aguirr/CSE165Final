@@ -32,24 +32,30 @@ public class leftHandScript : MonoBehaviour
 	static public string backPackBox;
    
     GameObject backPackObj;
-	
-	// GameObject firstSetEn;
-	// firstSetLeftNum = firstSetEn.transform.childCount;
-	// GameObject firstLast;
-	// Vector3 firstLastPosition;
-		
+
+    // GameObject firstSetEn;
+    // firstSetLeftNum = firstSetEn.transform.childCount;
+    // GameObject firstLast;
+    // Vector3 firstLastPosition;
+    GameObject dagger;
 	
 	GameObject theRedCube;
 	GameObject firstLast;
 	Vector3 firstLastPosition;
-	bool firstSetLastKilled;
 
-    
+    GameObject theIndigCube;
+    GameObject secondLast;
+    Vector3 secondLastPosition;
+    bool firstSetLastKilled;
+    bool secondSetLastKilled;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
         backPackObj = GameObject.Find("/backPackObj");
+        dagger = GameObject.Find("dagger");
 		backPackObj.SetActive(true);
         canSwitch = true;
        
@@ -508,16 +514,20 @@ public class leftHandScript : MonoBehaviour
         if (OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, OVRInput.Controller.Touch) > 0.0f && canSwitch)
         {
             canSwitch = false;
+
            if( GameObject.Find("hand_right").transform.GetComponent<Raycasttest>().isUsingGun)
             {
+                dagger.SetActive(false);
                 GameObject.Find("hand_right").transform.GetComponent<Raycasttest>().isUsingGun = false;
 				GameObject.Find("hand_right").transform.GetComponent<BoxCollider>().center =new Vector3(0,0,0);
 				GameObject.Find("hand_right").transform.GetComponent<BoxCollider>().size =new Vector3(0.05f,0.05f,0.13f);
+                
             }
             else
             {
                 GameObject.Find("hand_right").transform.GetComponent<Raycasttest>().isUsingGun = true ;
-				GameObject.Find("hand_right").transform.GetComponent<BoxCollider>().center =new Vector3(0,0,5);
+                dagger.SetActive(true);
+                GameObject.Find("hand_right").transform.GetComponent<BoxCollider>().center =new Vector3(0,0,5);
 				GameObject.Find("hand_right").transform.GetComponent<BoxCollider>().size =new Vector3(0.05f,0.05f,10.05f);
             }
         }
@@ -552,26 +562,54 @@ public class leftHandScript : MonoBehaviour
 			
 			firstSetLastKilled = true;
 		}
-				
-			
-		// if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.LTouch))
-		// {
-			// // GameObject firstSet = GameObject.Find("/firstSet");
-			// // if(firstSetLeftNum==0)
-			// // {
-				
-			// // }
-			
-            // GameObject orgC = GameObject.Find("/backPackObj/orangeCube_small");   /////////////////////////////////Commented out because error
-			// orgC.transform.position = bP3.transform.position + new Vector3(0,0,0.02f);
 
-            // GameObject redC = GameObject.Find("/backPackObj/redCube_small");
-            // redC.transform.position = bP2.transform.position + new Vector3(0,0,0.02f);
-		// }
-		  
-            // Debug.Log(Vector3.Distance(bP15.transform.position,rightHand.transform.position));
-            // Debug.Log(bP1.transform.position);
-            // Debug.Log(rightHand.transform.position);
-		
+
+
+        GameObject secondSetEn = GameObject.Find("/secondSet");
+        int secondSetLeftNum = firstSetEn.transform.childCount;
+
+        ///////////To drop from enemy///////////
+        if (secondSetLeftNum == 1)
+        {
+            secondLast = firstSetEn.gameObject.transform.GetChild(0).gameObject;
+            secondLastPosition = secondLast.transform.position;
+            //Debug.Log(firstSetLeftNum);
+            secondSetLastKilled = false;
+        }
+        else if (secondSetLeftNum == 0)
+        {
+            if (!secondSetLastKilled)
+            {
+                GameObject obj = Resources.Load("theRedCube") as GameObject;
+                theRedCube = Instantiate(obj) as GameObject;
+                firstLastPosition = new Vector3(83.74939f, 1.6f, 24.00222f);
+                theRedCube.transform.position = firstLastPosition;
+            }
+
+            secondSetLastKilled = true;
+        }
+
+
+
+
+        // if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.LTouch))
+        // {
+        // // GameObject firstSet = GameObject.Find("/firstSet");
+        // // if(firstSetLeftNum==0)
+        // // {
+
+        // // }
+
+        // GameObject orgC = GameObject.Find("/backPackObj/orangeCube_small");   /////////////////////////////////Commented out because error
+        // orgC.transform.position = bP3.transform.position + new Vector3(0,0,0.02f);
+
+        // GameObject redC = GameObject.Find("/backPackObj/redCube_small");
+        // redC.transform.position = bP2.transform.position + new Vector3(0,0,0.02f);
+        // }
+
+        // Debug.Log(Vector3.Distance(bP15.transform.position,rightHand.transform.position));
+        // Debug.Log(bP1.transform.position);
+        // Debug.Log(rightHand.transform.position);
+
     }
 }

@@ -129,6 +129,7 @@ MonoBehaviour:
   hit: 0
   force: 0
   hp: 1
+  speed: 1
   hitPos: {x: 0, y: 0, z: 0}
   summoningAudio: {fileID: 8300000, guid: dac66b2d48068cd42b6fee2163b58891, type: 3}
 --- !u!82 &9072709910255935417

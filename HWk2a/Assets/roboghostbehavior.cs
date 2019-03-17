@@ -14,6 +14,9 @@ public class roboghostbehavior : MonoBehaviour
     float dyingtime = 2;
     public float force;
     public int hp;
+    public float speed;
+    public bool isDropper;
+    public GameObject cube;
     ParticleSystem sparks;
 
     
@@ -109,7 +112,11 @@ public class roboghostbehavior : MonoBehaviour
             else
             {
                 //hit = false;
-
+                if (isDropper)
+                {
+                    Instantiate(cube, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity, transform.root.transform);
+                    isDropper = false;
+                }
 
                 dead = true;
                 hit = true;
@@ -142,13 +149,13 @@ public class roboghostbehavior : MonoBehaviour
         {
             
             diff = player.transform.position - transform.position;
-            transform.position = transform.position + (diff * Time.deltaTime);
+            transform.position = transform.position + (diff * Time.deltaTime * speed);
         }
 
         if(waking)
         {
            
-            transform.position = transform.position + (diff2 * Time.deltaTime);
+            transform.position = transform.position + (diff2 * Time.deltaTime * speed);
      
             float dist = Vector3.Distance(risingDiff, transform.position);
             if(dist < 0.5)

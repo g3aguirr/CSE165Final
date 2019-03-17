@@ -129,6 +129,7 @@ MonoBehaviour:
   hit: 0
   force: 0
   hp: 2
+  speed: 0.7
   hitPos: {x: 0, y: 0, z: 0}
   summoningAudio: {fileID: 8300000, guid: dac66b2d48068cd42b6fee2163b58891, type: 3}
 --- !u!82 &9072709910255935417
@@ -395,6 +396,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7788737767185321142}
     m_Modifications:
+    - target: {fileID: 144750144205522155, guid: 8b12d36165773e842bdab58c293ece25,
+        type: 3}
+      propertyPath: m_Name
+      value: Vparticle
+      objectReference: {fileID: 0}
     - target: {fileID: 144750144205522152, guid: 8b12d36165773e842bdab58c293ece25,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -464,11 +470,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 3.5546017
-      objectReference: {fileID: 0}
-    - target: {fileID: 144750144205522155, guid: 8b12d36165773e842bdab58c293ece25,
-        type: 3}
-      propertyPath: m_Name
-      value: Vparticle
       objectReference: {fileID: 0}
     - target: {fileID: 144750144205522153, guid: 8b12d36165773e842bdab58c293ece25,
         type: 3}

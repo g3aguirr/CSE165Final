@@ -129,6 +129,7 @@ MonoBehaviour:
   hit: 0
   force: 0
   hp: 5
+  speed: 0.6
   hitPos: {x: 0, y: 0, z: 0}
   summoningAudio: {fileID: 8300000, guid: dac66b2d48068cd42b6fee2163b58891, type: 3}
 --- !u!82 &9072709910255935417
@@ -395,6 +396,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7788737767185321142}
     m_Modifications:
+    - target: {fileID: 144750144205522155, guid: 8b12d36165773e842bdab58c293ece25,
+        type: 3}
+      propertyPath: m_Name
+      value: Vparticle
+      objectReference: {fileID: 0}
     - target: {fileID: 144750144205522152, guid: 8b12d36165773e842bdab58c293ece25,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -465,11 +471,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 3.5546017
       objectReference: {fileID: 0}
-    - target: {fileID: 144750144205522155, guid: 8b12d36165773e842bdab58c293ece25,
+    - target: {fileID: 144750144205522154, guid: 8b12d36165773e842bdab58c293ece25,
         type: 3}
-      propertyPath: m_Name
-      value: Vparticle
-      objectReference: {fileID: 0}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ac54d110624c7ee4f804d38f690bbb9d, type: 2}
+    - target: {fileID: 144750144205522154, guid: 8b12d36165773e842bdab58c293ece25,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: ac54d110624c7ee4f804d38f690bbb9d, type: 2}
     - target: {fileID: 144750144205522153, guid: 8b12d36165773e842bdab58c293ece25,
         type: 3}
       propertyPath: InitialModule.startSpeed.scalar
@@ -490,16 +501,6 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 144750144205522154, guid: 8b12d36165773e842bdab58c293ece25,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: ac54d110624c7ee4f804d38f690bbb9d, type: 2}
-    - target: {fileID: 144750144205522154, guid: 8b12d36165773e842bdab58c293ece25,
-        type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: ac54d110624c7ee4f804d38f690bbb9d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b12d36165773e842bdab58c293ece25, type: 3}
 --- !u!4 &5279391746438911787 stripped
