@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 4822272184780459527}
   - component: {fileID: 250098093457993513}
   m_Layer: 0
-  m_Name: theVoiletCube
+  m_Name: theVioletCube
   m_TagString: violetOne
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -159,7 +159,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5537417343800037656}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}

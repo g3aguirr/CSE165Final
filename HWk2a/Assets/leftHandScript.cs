@@ -74,7 +74,7 @@ public class leftHandScript : MonoBehaviour
         dir.z = 0;
         dir = Quaternion.AngleAxis(-90, Vector3.forward) * dir;
 
-        //Debug.DrawRay(transform.position, transform.TransformDirection(dir) * 10, Color.yellow);
+        Debug.DrawRay(transform.position, transform.TransformDirection(dir) * 10, Color.yellow);
         if (Physics.Raycast(transform.position, transform.TransformDirection(dir) * 500, out hit, 5000))
         {
             if (hit.transform.tag == "roboGhost")
@@ -82,7 +82,7 @@ public class leftHandScript : MonoBehaviour
 
                 if (OVRInput.Get(OVRInput.RawButton.Y))
                 {
-                    // Debug.Log("hittingghost");
+                     Debug.Log("hittingghost");
                     //Raycasttest.stop = true;
                     roboghostbehavior script = hit.transform.GetComponent<roboghostbehavior>();
 

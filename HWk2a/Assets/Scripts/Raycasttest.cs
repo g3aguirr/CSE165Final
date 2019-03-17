@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Raycasttest : MonoBehaviour {
     private LineRenderer laserLine;
@@ -20,6 +21,7 @@ public class Raycasttest : MonoBehaviour {
     GameObject destinationPre;
     GameObject currGameObject = null; //used for highlighting
     GameObject gun;
+    GameObject inputText;
     
     Transform tempformer;
     Renderer rend = null;
@@ -50,6 +52,8 @@ public class Raycasttest : MonoBehaviour {
 
     public float delay = 0.25f;
 
+    
+
 
     Vector3 lastPosition;
     Vector3 initialPos;
@@ -67,7 +71,11 @@ public class Raycasttest : MonoBehaviour {
 
     ParticleSystem gunSparks;
     GameObject gunSprks_GO;
-    
+    TextMeshPro textScript;
+    TextMeshPro infoScript;
+
+
+
     int colorCounter = 0;
 
     void Start()
@@ -79,14 +87,17 @@ public class Raycasttest : MonoBehaviour {
         laserLine.material = laserpointer;
         laserMat = (Material)Resources.Load("laser", typeof(Material));
 
-        
 
-       // laserLine.colorGradient = gradient;
-       
-        
-        
-       
-         transform.forward = GameObject.Find("CenterEyeAnchor").transform.forward;
+        inputText = GameObject.Find("inputMonitor").transform.GetChild(2).gameObject;
+        textScript = inputText.GetComponent<TextMeshPro>();
+        inputText = GameObject.Find("inputMonitor").transform.GetChild(4).gameObject;
+        infoScript = inputText.GetComponent<TextMeshPro>();
+        // laserLine.colorGradient = gradient;
+
+
+
+
+        transform.forward = GameObject.Find("CenterEyeAnchor").transform.forward;
 
         gunSparks = GameObject.Find("Gunsparks").GetComponent<ParticleSystem>();
         gunSprks_GO = GameObject.Find("Gunsparks");
@@ -177,34 +188,72 @@ public class Raycasttest : MonoBehaviour {
             //destination.SetActive(false);
             //arrowTele.SetActive(false);
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward) * 10, out hit, 5000))
-        {
+            {
             
 
            
 
-            if (hit.transform.tag == "roboGhost")
+                if (hit.transform.tag == "roboGhost")
+                {
+                    if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger, OVRInput.Controller.Touch) > 0.0f && canShoot)
+                    {
+
+                        canShoot = false;
+                        roboghostbehavior script = hit.transform.GetComponent<roboghostbehavior>();
+                        script.hit = true;
+                        script.hitPos = hit.point;
+                    }
+
+                    if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger, OVRInput.Controller.Touch) == 0.0f && !canShoot)
+                    {
+
+                        canShoot = true;
+            
+                    }
+
+
+                }
+            if (hit.transform.tag == "letter")
             {
+              
+                
                 if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger, OVRInput.Controller.Touch) > 0.0f && canShoot)
                 {
 
                     canShoot = false;
-                    roboghostbehavior script = hit.transform.GetComponent<roboghostbehavior>();
-                    script.hit = true;
-                    script.hitPos = hit.point;
+                   
+                    textScript.text += hit.collider.gameObject.name;
+                    if (textScript.text.Length == 7)
+                    {
+                        if (textScript.text == "SPECTRA")
+                        {
+                            infoScript.text = "CORRECT!";
+                        }
+                        else
+                        {
+                            textScript.text = "";
+                            infoScript.text = "INCORRECT!";
+                        }
+
+
+                    }
                 }
 
                 if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger, OVRInput.Controller.Touch) == 0.0f && !canShoot)
                 {
 
                     canShoot = true;
-            
+
                 }
-
-
+                  
+               
             }
+                
+
+
 
            
-        }
+            }
        
        
 

@@ -196,13 +196,18 @@ public class roboghostbehavior : MonoBehaviour
             Debug.Log(playerCollider.playerHp);
             //transform.GetComponent<Rigidbody>().detectCollisions = false;
             var dist = transform.position - col.gameObject.transform.position;
-            transform.position = transform.position + (dist * 2);
+            transform.position = transform.position + (dist * 3);
         }
 
         if (col.gameObject.tag == "dagger")
         {
             if(hp == 1)
                  hit = true;
+            //else
+            //{
+            //    var dist = transform.position - col.gameObject.transform.position;
+            //    transform.position = transform.position + (dist * 3);
+            //}
         }
 
 
