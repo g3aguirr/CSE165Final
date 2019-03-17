@@ -183,6 +183,20 @@ public class roboghostbehavior : MonoBehaviour
             transform.position = transform.position + (dist * Time.deltaTime);
         }
 
+        if(col.gameObject.tag == "Player")
+        {
+            playerCollider.playerHp--;
+            Debug.Log(playerCollider.playerHp);
+            //transform.GetComponent<Rigidbody>().detectCollisions = false;
+            var dist = transform.position - col.gameObject.transform.position;
+            transform.position = transform.position + (dist * 2);
+        }
+
+        if (col.gameObject.tag == "dagger")
+        {
+            if(hp == 1)
+                 hit = true;
+        }
 
 
 
@@ -190,7 +204,7 @@ public class roboghostbehavior : MonoBehaviour
 
     void OnCollisionExit(Collision col)
     {
-        if (col.gameObject.tag == "desk" || col.gameObject.tag == "protoroboghost")
+        if (col.gameObject.tag == "desk" || col.gameObject.tag == "protoroboghost" || col.gameObject.tag == "player")
         {
             transform.GetComponent<Rigidbody>().detectCollisions = true;
         }

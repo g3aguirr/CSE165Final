@@ -278,25 +278,6 @@ public class Raycasttest : MonoBehaviour {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             // pos = transform.rotation * (pos * 10);
 
             pos = diff2 * (pos * 50);

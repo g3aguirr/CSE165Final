@@ -94,7 +94,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5000001
+  m_Radius: 0.98
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
@@ -395,6 +395,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7788737767185321142}
     m_Modifications:
+    - target: {fileID: 144750144205522155, guid: 8b12d36165773e842bdab58c293ece25,
+        type: 3}
+      propertyPath: m_Name
+      value: Vparticle
+      objectReference: {fileID: 0}
     - target: {fileID: 144750144205522152, guid: 8b12d36165773e842bdab58c293ece25,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -464,11 +469,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 3.5546017
-      objectReference: {fileID: 0}
-    - target: {fileID: 144750144205522155, guid: 8b12d36165773e842bdab58c293ece25,
-        type: 3}
-      propertyPath: m_Name
-      value: Vparticle
       objectReference: {fileID: 0}
     - target: {fileID: 144750144205522153, guid: 8b12d36165773e842bdab58c293ece25,
         type: 3}

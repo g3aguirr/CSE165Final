@@ -27,6 +27,7 @@ public class leftHandScript : MonoBehaviour
 	int index;
     bool canSwitch;
 	static public bool putStuffInBP = false;
+    public float angle = 0.0f;
 	
 	static public string backPackBox;
    
@@ -42,7 +43,9 @@ public class leftHandScript : MonoBehaviour
 	GameObject firstLast;
 	Vector3 firstLastPosition;
 	bool firstSetLastKilled;
-	
+
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,10 +60,40 @@ public class leftHandScript : MonoBehaviour
     void Update()
     {
 		rightHand = GameObject.Find("/Player/OVRCameraRig/LocalAvatar/hand_right/handMode");
-		
-		
-		
-        if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.LTouch))
+
+        Vector3 dir;
+        RaycastHit hit = new RaycastHit();
+        dir.x = 1;
+        dir.y = 0;
+        dir.z = 0;
+        dir = Quaternion.AngleAxis(-90, Vector3.forward) * dir;
+
+        //Debug.DrawRay(transform.position, transform.TransformDirection(dir) * 10, Color.yellow);
+        if (Physics.Raycast(transform.position, transform.TransformDirection(dir) * 500, out hit, 5000))
+        {
+            if (hit.transform.tag == "roboGhost")
+            {
+
+                if (OVRInput.Get(OVRInput.RawButton.Y))
+                {
+                    // Debug.Log("hittingghost");
+                    //Raycasttest.stop = true;
+                    roboghostbehavior script = hit.transform.GetComponent<roboghostbehavior>();
+
+                    if (script.hp == 1)
+                    {
+                        Vector3 dist = hit.transform.position - transform.root.transform.position;
+                        dist = Vector3.Normalize(dist);
+                        Vector3 newPos = transform.root.transform.position + (dist * Time.deltaTime * 15);
+                        newPos.y = transform.root.position.y;
+                        transform.root.transform.position = newPos;
+
+                    }
+                }
+            }
+        }
+
+            if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.LTouch))
         {
 				
 			
@@ -499,12 +532,12 @@ public class leftHandScript : MonoBehaviour
 		GameObject firstSetEn = GameObject.Find("/firstSet");
 		int firstSetLeftNum = firstSetEn.transform.childCount;
 
-		
+		///////////To drop from enemy///////////
 		if (firstSetLeftNum == 1)
 		{
 			firstLast = firstSetEn.gameObject.transform.GetChild(0).gameObject;
 			firstLastPosition = firstLast.transform.position;
-			Debug.Log(firstSetLeftNum);
+			//Debug.Log(firstSetLeftNum);
 			firstSetLastKilled = false;
 		}
 		else if (firstSetLeftNum == 0)

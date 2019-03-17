@@ -28,6 +28,7 @@ TagManager:
   - left
   - right
   - wall
+  - dagger
   layers:
   - Default
   - TransparentFX
