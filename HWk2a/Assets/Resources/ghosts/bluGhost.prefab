@@ -130,6 +130,8 @@ MonoBehaviour:
   force: 0
   hp: 3
   speed: 0.8
+  isDropper: 0
+  cube: {fileID: 0}
   hitPos: {x: 0, y: 0, z: 0}
   summoningAudio: {fileID: 8300000, guid: dac66b2d48068cd42b6fee2163b58891, type: 3}
 --- !u!82 &9072709910255935417
@@ -141,22 +143,22 @@ AudioSource:
   m_GameObject: {fileID: 1039581385995495979}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300001, guid: 7fbfd3919eac2ed418bd5526755627e4,
+  OutputAudioMixerGroup: {fileID: 24300001, guid: 1dd706bb85d8aef4e83a6229dbd62c36,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: dac66b2d48068cd42b6fee2163b58891, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
-  Spatialize: 0
+  Spatialize: 1
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -204,7 +206,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.19722222
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

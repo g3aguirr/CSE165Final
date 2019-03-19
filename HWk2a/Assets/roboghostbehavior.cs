@@ -197,6 +197,7 @@ public class roboghostbehavior : MonoBehaviour
             //transform.GetComponent<Rigidbody>().detectCollisions = false;
             var dist = transform.position - col.gameObject.transform.position;
             transform.position = transform.position + (dist * 3);
+            //p--;
         }
 
         if (col.gameObject.tag == "dagger")

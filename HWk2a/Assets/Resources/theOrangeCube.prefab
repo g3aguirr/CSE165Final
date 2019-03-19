@@ -85,8 +85,8 @@ GameObject:
   - component: {fileID: 4822272184780459527}
   - component: {fileID: 250098093457993513}
   m_Layer: 0
-  m_Name: theBlueCube 1
-  m_TagString: violetOne
+  m_Name: theOrangeCube
+  m_TagString: orangeOne
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

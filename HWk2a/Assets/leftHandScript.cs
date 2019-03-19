@@ -26,6 +26,7 @@ public class leftHandScript : MonoBehaviour
 	float minD;
 	int index;
     bool canSwitch;
+    bool battleMode;
 	static public bool putStuffInBP = false;
     public float angle = 0.0f;
 	
@@ -58,7 +59,7 @@ public class leftHandScript : MonoBehaviour
         dagger = GameObject.Find("dagger");
 		backPackObj.SetActive(true);
         canSwitch = true;
-       
+        battleMode = true;
        
     }
 
@@ -80,7 +81,7 @@ public class leftHandScript : MonoBehaviour
             if (hit.transform.tag == "roboGhost")
             {
 
-                if (OVRInput.Get(OVRInput.RawButton.Y))
+                if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.LTouch) && battleMode)
                 {
                      Debug.Log("hittingghost");
                     //Raycasttest.stop = true;
@@ -99,7 +100,7 @@ public class leftHandScript : MonoBehaviour
             }
         }
 
-            if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.LTouch))
+            if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.LTouch) && !battleMode)
         {
 				
 			
@@ -511,12 +512,14 @@ public class leftHandScript : MonoBehaviour
 			}
             
         }
+        /////////////////SWITCH BETWEEN MODES////////////////////
         if (OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, OVRInput.Controller.Touch) > 0.0f && canSwitch)
         {
             canSwitch = false;
 
            if( GameObject.Find("hand_right").transform.GetComponent<Raycasttest>().isUsingGun)
             {
+                battleMode = false;
                 dagger.SetActive(false);
                 GameObject.Find("hand_right").transform.GetComponent<Raycasttest>().isUsingGun = false;
 				GameObject.Find("hand_right").transform.GetComponent<BoxCollider>().center =new Vector3(0,0,0);
@@ -525,6 +528,7 @@ public class leftHandScript : MonoBehaviour
             }
             else
             {
+                battleMode = true;
                 GameObject.Find("hand_right").transform.GetComponent<Raycasttest>().isUsingGun = true ;
                 dagger.SetActive(true);
                 GameObject.Find("hand_right").transform.GetComponent<BoxCollider>().center =new Vector3(0,0,5);
