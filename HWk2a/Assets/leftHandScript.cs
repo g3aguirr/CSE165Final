@@ -543,55 +543,55 @@ public class leftHandScript : MonoBehaviour
 		
 
 		
-		GameObject firstSetEn = GameObject.Find("/firstSet");
-		int firstSetLeftNum = firstSetEn.transform.childCount;
+		//GameObject firstSetEn = GameObject.Find("/firstSet");
+		//int firstSetLeftNum = firstSetEn.transform.childCount;
 
-		///////////To drop from enemy///////////
-		if (firstSetLeftNum == 1)
-		{
-			firstLast = firstSetEn.gameObject.transform.GetChild(0).gameObject;
-			firstLastPosition = firstLast.transform.position;
-			//Debug.Log(firstSetLeftNum);
-			firstSetLastKilled = false;
-		}
-		else if (firstSetLeftNum == 0)
-		{
-			if (!firstSetLastKilled)
-			{
-				GameObject obj = Resources.Load("theRedCube") as GameObject;
-				theRedCube = Instantiate(obj) as GameObject;
-				firstLastPosition = new Vector3(83.74939f,1.6f,24.00222f);
-				theRedCube.transform.position = firstLastPosition;
-			}
+		/////////////To drop from enemy///////////
+		//if (firstSetLeftNum == 1)
+		//{
+		//	firstLast = firstSetEn.gameObject.transform.GetChild(0).gameObject;
+		//	firstLastPosition = firstLast.transform.position;
+		//	//Debug.Log(firstSetLeftNum);
+		//	firstSetLastKilled = false;
+		//}
+		//else if (firstSetLeftNum == 0)
+		//{
+		//	if (!firstSetLastKilled)
+		//	{
+		//		GameObject obj = Resources.Load("theRedCube") as GameObject;
+		//		theRedCube = Instantiate(obj) as GameObject;
+		//		firstLastPosition = new Vector3(83.74939f,1.6f,24.00222f);
+		//		theRedCube.transform.position = firstLastPosition;
+		//	}
 			
-			firstSetLastKilled = true;
-		}
+		//	firstSetLastKilled = true;
+		//}
 
 
 
-        GameObject secondSetEn = GameObject.Find("/secondSet");
-        int secondSetLeftNum = firstSetEn.transform.childCount;
+  //      GameObject secondSetEn = GameObject.Find("/secondSet");
+  //      int secondSetLeftNum = firstSetEn.transform.childCount;
 
-        ///////////To drop from enemy///////////
-        if (secondSetLeftNum == 1)
-        {
-            secondLast = firstSetEn.gameObject.transform.GetChild(0).gameObject;
-            secondLastPosition = secondLast.transform.position;
-            //Debug.Log(firstSetLeftNum);
-            secondSetLastKilled = false;
-        }
-        else if (secondSetLeftNum == 0)
-        {
-            if (!secondSetLastKilled)
-            {
-                GameObject obj = Resources.Load("theRedCube") as GameObject;
-                theRedCube = Instantiate(obj) as GameObject;
-                firstLastPosition = new Vector3(83.74939f, 1.6f, 24.00222f);
-                theRedCube.transform.position = firstLastPosition;
-            }
+  //      ///////////To drop from enemy///////////
+  //      if (secondSetLeftNum == 1)
+  //      {
+  //          secondLast = firstSetEn.gameObject.transform.GetChild(0).gameObject;
+  //          secondLastPosition = secondLast.transform.position;
+  //          //Debug.Log(firstSetLeftNum);
+  //          secondSetLastKilled = false;
+  //      }
+  //      else if (secondSetLeftNum == 0)
+  //      {
+  //          if (!secondSetLastKilled)
+  //          {
+  //              GameObject obj = Resources.Load("theRedCube") as GameObject;
+  //              theRedCube = Instantiate(obj) as GameObject;
+  //              firstLastPosition = new Vector3(83.74939f, 1.6f, 24.00222f);
+  //              theRedCube.transform.position = firstLastPosition;
+  //          }
 
-            secondSetLastKilled = true;
-        }
+  //          secondSetLastKilled = true;
+  //      }
 
 
 

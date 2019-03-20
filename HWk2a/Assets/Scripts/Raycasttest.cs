@@ -322,8 +322,8 @@ public class Raycasttest : MonoBehaviour {
             
 
 
-            Quaternion finRot = (Quaternion.Slerp(transform.root.transform.rotation, transform.root.transform.rotation * diff, 0.01f));
-            transform.root.transform.rotation = finRot;
+            Quaternion finRot = (Quaternion.Slerp(transform.root.transform.rotation, transform.root.transform.rotation * diff, 0.007f));
+            transform.root.transform.rotation = finRot;/////////////////////ROTATION DISABLE
             if (!superman)
             {
                 transform.root.transform.rotation = Quaternion.Euler(new Vector3(0f, transform.root.transform.rotation.eulerAngles.y, 0f));
@@ -352,10 +352,10 @@ public class Raycasttest : MonoBehaviour {
 
             // pos = transform.rotation * (pos * 10);
 
-            pos = diff2 * (pos * 50);
-            
+            pos = diff2 * (pos * 20); //////////UNNORMALIZED MOVEMENT
+            //pos = diff2 * (pos); //////////Normalized
             pos2 = transform.root.transform.position;
-            
+           // pos = Vector3.Normalize(pos);
             pos2 = pos2 + (pos * Time.deltaTime); 
             if(!superman)
             pos2.y = transform.root.transform.position.y;
@@ -368,7 +368,7 @@ public class Raycasttest : MonoBehaviour {
 
         }
 
-        if (OVRInput.GetDown(OVRInput.RawButton.X))
+        if (false)
         {
 
             if (!continuousMotion)

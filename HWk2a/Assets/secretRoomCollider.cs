@@ -6,7 +6,7 @@ public class secretRoomCollider : MonoBehaviour
 {
 	bool holdObj = false;
 	static bool haveObjectInhand = false;
-	
+    public float mod;
 	Quaternion handRotationInit;
 	Quaternion objectRotationInit;
 	GameObject rightHand;
@@ -58,11 +58,13 @@ public class secretRoomCollider : MonoBehaviour
     {
 		if (holdObj && collided)
 		{	
-			Quaternion handRot =  rightHand.transform.localRotation  * Quaternion.Inverse(handRotationInit);
+			Quaternion handRot =  rightHand.transform.localRotation * Quaternion.Inverse(handRotationInit);
 			Vector3 handRotAngle = handRot.eulerAngles;
-			
-			transform.localRotation = Quaternion.Euler(0, 0, -handRotAngle.z) * objectRotationInit;		
-			Debug.Log(transform.localRotation.eulerAngles);
+
+            Quaternion finRot = (Quaternion.Slerp(objectRotationInit, Quaternion.Euler(0, 0, handRotAngle.z) * objectRotationInit, mod));
+            transform.localRotation = finRot;
+
+            Debug.Log(transform.localRotation.eulerAngles);
 		}
         
     }

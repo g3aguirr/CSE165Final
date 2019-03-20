@@ -52,7 +52,7 @@ public class playerCollider : MonoBehaviour
 
     }
 
-    void OnTriggerStay(Collider col)
+    void OnTriggerEnter(Collider col)
     {
 
        
