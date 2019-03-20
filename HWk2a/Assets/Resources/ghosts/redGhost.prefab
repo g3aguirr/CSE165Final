@@ -4986,8 +4986,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hit: 0
   force: 0
-  hp: 2
-  speed: 0
+  hp: 7
+  speed: 0.4
   isDropper: 0
   cube: {fileID: 0}
   hitPos: {x: 0, y: 0, z: 0}

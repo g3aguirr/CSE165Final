@@ -22,7 +22,12 @@ public class Raycasttest : MonoBehaviour {
     GameObject currGameObject = null; //used for highlighting
     GameObject gun;
     GameObject inputText;
-    
+    GameObject inputScreen;
+    GameObject inputLight;
+    Material redScreen;
+    Material greenScreen;
+    Material whiteScreen;
+
     Transform tempformer;
     Renderer rend = null;
     Color original;
@@ -92,6 +97,8 @@ public class Raycasttest : MonoBehaviour {
         textScript = inputText.GetComponent<TextMeshPro>();
         inputText = GameObject.Find("inputMonitor").transform.GetChild(4).gameObject;
         infoScript = inputText.GetComponent<TextMeshPro>();
+        inputScreen = GameObject.Find("inputMonitor").transform.GetChild(0).gameObject;
+        inputLight = GameObject.Find("inputMonitor").transform.GetChild(5).gameObject;
         // laserLine.colorGradient = gradient;
 
 
@@ -111,7 +118,7 @@ public class Raycasttest : MonoBehaviour {
     {
 
         RaycastHit hit = new RaycastHit();
-
+        ////////////BATTLE MODE////////////
         if (isUsingGun)
         {
             isHolding = false;
@@ -158,7 +165,7 @@ public class Raycasttest : MonoBehaviour {
                 blueTime = true;
                 source.PlayOneShot(laser, .7f);
                 source.PlayOneShot(afterLaserAudio, .1f);
-                OVRInput.SetControllerVibration(0, 1, OVRInput.Controller.RTouch);
+                OVRInput.SetControllerVibration(0.5f, 1, OVRInput.Controller.RTouch);
                 canVibrate = false;
 
             }
@@ -213,6 +220,7 @@ public class Raycasttest : MonoBehaviour {
 
 
                 }
+            ///////////SYMBOLIC INPUT//////////
             if (hit.transform.tag == "letter")
             {
               
@@ -228,15 +236,28 @@ public class Raycasttest : MonoBehaviour {
                         if (textScript.text == "SPECTRA")
                         {
                             infoScript.text = "CORRECT!";
+                            inputScreen.transform.GetComponent<Renderer>().material = (Material)Resources.Load("greenlight", typeof(Material));
+                            inputLight.GetComponent<Light>().color = Color.green;
+
+
                         }
                         else
                         {
                             textScript.text = "";
                             infoScript.text = "INCORRECT!";
+                           
+                            inputScreen.transform.GetComponent<Renderer>().material = (Material)Resources.Load("laserPointer", typeof(Material));
+                            inputLight.GetComponent<Light>().color = Color.red;
                         }
 
 
                     }
+                    else
+                    {
+                        inputScreen.transform.GetComponent<Renderer>().material = (Material)Resources.Load("indigoCube", typeof(Material));
+                        inputLight.GetComponent<Light>().color = Color.white;
+                    }
+
                 }
 
                 if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger, OVRInput.Controller.Touch) == 0.0f && !canShoot)
