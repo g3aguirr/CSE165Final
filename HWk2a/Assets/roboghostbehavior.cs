@@ -193,7 +193,7 @@ public class roboghostbehavior : MonoBehaviour
         if(col.gameObject.tag == "Player")
         {
             playerCollider.playerHp--;
-            Debug.Log(playerCollider.playerHp);
+            
             //transform.GetComponent<Rigidbody>().detectCollisions = false;
             var dist = transform.position - col.gameObject.transform.position;
             transform.position = transform.position + (dist * 3);

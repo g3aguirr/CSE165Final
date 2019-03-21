@@ -36,12 +36,14 @@ public class Raycasttest : MonoBehaviour {
     bool teleportLock = false;
     public static bool continuousMotion = true;
     public static bool stop = false;
+    public bool training;
     bool stored = false;
     bool superman = false;
     bool teleArrow = true;
     bool canVibrate = true;
     bool blueTime = false;
     bool canShoot = true;
+    bool complete = false;
     public bool isHolding;
     public bool isUsingGun = true;
     float heldDownTime;
@@ -92,13 +94,15 @@ public class Raycasttest : MonoBehaviour {
         laserLine.material = laserpointer;
         laserMat = (Material)Resources.Load("laser", typeof(Material));
 
-
-        inputText = GameObject.Find("inputMonitor").transform.GetChild(2).gameObject;
-        textScript = inputText.GetComponent<TextMeshPro>();
-        inputText = GameObject.Find("inputMonitor").transform.GetChild(4).gameObject;
-        infoScript = inputText.GetComponent<TextMeshPro>();
-        inputScreen = GameObject.Find("inputMonitor").transform.GetChild(0).gameObject;
-        inputLight = GameObject.Find("inputMonitor").transform.GetChild(5).gameObject;
+        if (!training)
+        {
+            inputText = GameObject.Find("inputMonitor").transform.GetChild(2).gameObject;
+            textScript = inputText.GetComponent<TextMeshPro>();
+            inputText = GameObject.Find("inputMonitor").transform.GetChild(4).gameObject;
+            infoScript = inputText.GetComponent<TextMeshPro>();
+            inputScreen = GameObject.Find("inputMonitor").transform.GetChild(0).gameObject;
+            inputLight = GameObject.Find("inputMonitor").transform.GetChild(5).gameObject;
+        }
         // laserLine.colorGradient = gradient;
 
 
@@ -221,7 +225,7 @@ public class Raycasttest : MonoBehaviour {
 
                 }
             ///////////SYMBOLIC INPUT//////////
-            if (hit.transform.tag == "letter")
+            if (hit.transform.tag == "letter" && !complete)
             {
               
                 
@@ -238,6 +242,7 @@ public class Raycasttest : MonoBehaviour {
                             infoScript.text = "CORRECT!";
                             inputScreen.transform.GetComponent<Renderer>().material = (Material)Resources.Load("greenlight", typeof(Material));
                             inputLight.GetComponent<Light>().color = Color.green;
+                            complete = true;
 
 
                         }
