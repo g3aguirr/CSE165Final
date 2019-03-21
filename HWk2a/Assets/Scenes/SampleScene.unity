@@ -1554,6 +1554,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: f194b26d26f5c1d489f1ffd38216a585, type: 2}
+    - target: {fileID: 9072709910255935417, guid: f5f6e2fdd3fa04743b4c11262fe3053e,
+        type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1605427462, guid: f5f6e2fdd3fa04743b4c11262fe3053e, type: 3}
       propertyPath: isDropper
       value: 0
@@ -1563,11 +1568,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5537417343800037656, guid: f0842a6fec31c9149936a65fe57d120d,
         type: 3}
-    - target: {fileID: 9072709910255935417, guid: f5f6e2fdd3fa04743b4c11262fe3053e,
-        type: 3}
-      propertyPath: Loop
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5f6e2fdd3fa04743b4c11262fe3053e, type: 3}
 --- !u!1 &170076733
@@ -14302,7 +14302,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 996172511, guid: 33d49bbd906ab01408c11d9e43145954, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: wall
       objectReference: {fileID: 0}
     - target: {fileID: 996172516, guid: 33d49bbd906ab01408c11d9e43145954, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15650,7 +15650,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 996172511, guid: 33d49bbd906ab01408c11d9e43145954, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: wall
       objectReference: {fileID: 0}
     - target: {fileID: 996172516, guid: 33d49bbd906ab01408c11d9e43145954, type: 3}
       propertyPath: m_LocalPosition.x
@@ -20905,7 +20905,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 996172511, guid: 33d49bbd906ab01408c11d9e43145954, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: wall
       objectReference: {fileID: 0}
     - target: {fileID: 996172516, guid: 33d49bbd906ab01408c11d9e43145954, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22778,6 +22778,7 @@ MonoBehaviour:
   wBG: {fileID: 1327429972}
   sBG: {fileID: 85372536}
   sIMG: {fileID: 216685351}
+  training: 0
   isHolding: 0
   isUsingGun: 1
   lasertime: 1
@@ -23988,6 +23989,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: f194b26d26f5c1d489f1ffd38216a585, type: 2}
+    - target: {fileID: 9072709910255935417, guid: f5f6e2fdd3fa04743b4c11262fe3053e,
+        type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1605427462, guid: f5f6e2fdd3fa04743b4c11262fe3053e, type: 3}
       propertyPath: isDropper
       value: 1
@@ -23997,11 +24003,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5537417343800037656, guid: f0842a6fec31c9149936a65fe57d120d,
         type: 3}
-    - target: {fileID: 9072709910255935417, guid: f5f6e2fdd3fa04743b4c11262fe3053e,
-        type: 3}
-      propertyPath: Loop
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5f6e2fdd3fa04743b4c11262fe3053e, type: 3}
 --- !u!1001 &1523652637
@@ -24017,7 +24018,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 996172511, guid: 33d49bbd906ab01408c11d9e43145954, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: wall
       objectReference: {fileID: 0}
     - target: {fileID: 996172516, guid: 33d49bbd906ab01408c11d9e43145954, type: 3}
       propertyPath: m_LocalPosition.x

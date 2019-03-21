@@ -22,6 +22,11 @@ public class leftHandScript : MonoBehaviour
 	GameObject bP13;
 	GameObject bP14;
 	GameObject bP15;
+
+    GameObject lastRobo;
+
+    Material highlight;
+    Material original;
 	List<float> disArray;
 	float minD;
 	int index;
@@ -57,7 +62,8 @@ public class leftHandScript : MonoBehaviour
     {
         backPackObj = GameObject.Find("/backPackObj");
         dagger = GameObject.Find("dagger");
-		backPackObj.SetActive(true);
+        highlight = (Material)Resources.Load("indigoCube", typeof(Material));
+        backPackObj.SetActive(true);
         canSwitch = true;
         battleMode = true;
        
@@ -76,14 +82,30 @@ public class leftHandScript : MonoBehaviour
         dir = Quaternion.AngleAxis(-90, Vector3.forward) * dir;
 
         Debug.DrawRay(transform.position, transform.TransformDirection(dir) * 10, Color.yellow);
+        if (lastRobo)
+        {
+         
+                lastRobo.transform.GetComponent<Renderer>().material = original;
+            
+        }
         if (Physics.Raycast(transform.position, transform.TransformDirection(dir) * 500, out hit, 5000))
         {
+            if (lastRobo)
+            {
+                if(hit.transform.gameObject != lastRobo)
+                {
+                    lastRobo.transform.GetComponent<Renderer>().material = original;
+                }
+            }
             if (hit.transform.tag == "roboGhost")
             {
-
+                original = hit.transform.GetComponent<Renderer>().material;
+                hit.transform.GetComponent<Renderer>().material = highlight;
+                lastRobo = hit.transform.gameObject;
                 if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.LTouch) && battleMode)
                 {
                      Debug.Log("hittingghost");
+                  
                     //Raycasttest.stop = true;
                     roboghostbehavior script = hit.transform.GetComponent<roboghostbehavior>();
 
@@ -98,9 +120,22 @@ public class leftHandScript : MonoBehaviour
                     }
                 }
             }
+            else if (lastRobo)
+            {
+               
+                    lastRobo.transform.GetComponent<Renderer>().material = original;
+                
+            }
+
+        }
+        else if (lastRobo)
+        {
+           
+                lastRobo.transform.GetComponent<Renderer>().material = original;
+            
         }
 
-            if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.LTouch) && !battleMode)
+        if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.LTouch) && !battleMode)
         {
 				
 			
