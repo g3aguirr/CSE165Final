@@ -102,7 +102,7 @@ public class tigger : MonoBehaviour
 			{
 				GetComponent<AudioSource>().mute = false;
 				bingoSource.Play();
-				GameObject CUBE = GameObject.Find("/theRedCube(Clone)");
+				GameObject CUBE = GameObject.Find("/theRedCube");
 				CUBE.GetComponent<boxscriptV2>().enabled = false;
 				GameObject CUBEPUT = GameObject.Find("/tableTrigger/putCard/R/Cube");
 				CUBE.transform.position = CUBEPUT.transform.position + new Vector3(0,0.1f,0);
@@ -113,6 +113,9 @@ public class tigger : MonoBehaviour
 			}
 			initRed = true;
 		}
+		// Debug.Log('redONe: '+redOne);
+		// Debug.Log('redHolder: '+tiggerBox.redHolder);
+		// Debug.Log('initRed: '+initRed);
 
 		
 		
@@ -220,7 +223,7 @@ public class tigger : MonoBehaviour
 				CUBE.transform.position = CUBEPUT.transform.position + new Vector3(0,0.1f,0);
 				CUBE.transform.rotation = Quaternion.Euler(0, 30, 45);		
 				CUBE.transform.localScale = new Vector3(0.15f,0.15f,0.15f); 
-				light = GameObject.Find("/tablePuzzleHint/indigoLight/light");
+				light = GameObject.Find("/tablePuzzleHint/violetLight/light");
 				light.GetComponent<Light>().enabled = true;
 			}
 			initViolet = true;

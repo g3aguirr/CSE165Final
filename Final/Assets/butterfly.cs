@@ -32,8 +32,10 @@ public class butterfly : MonoBehaviour
 		float z = p3.transform.localRotation.z *3 + p4.transform.localRotation.z*3 - 6.644001f;
 		Quaternion temp =  Quaternion.Euler(x, y, z);
         REDLight.transform.rotation = temp;
+		
 		if( p1.transform.localRotation.z == 0 && p2.transform.localRotation.z == 0 && p3.transform.localRotation.z == 0 && p4.transform.localRotation.z == 0)
 		{
+			
 			RED = true;
 			// could implement sound effect here indicate successful 
 		}

@@ -84,10 +84,10 @@ GameObject:
   - component: {fileID: 4245341747916103897}
   - component: {fileID: 4822272184780459527}
   - component: {fileID: 250098093457993513}
-  - component: {fileID: 1930098942226431095}
+  - component: {fileID: 590327419987924552}
   m_Layer: 0
-  m_Name: theBlueCube
-  m_TagString: blueOne
+  m_Name: theVioletCube
+  m_TagString: violetOne
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132,7 +132,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 70736869b7ff5f44bb81c6e0f10b1544, type: 2}
+  - {fileID: 2100000, guid: ad637de7604cb5a44bc7c2b7de19108e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -160,7 +160,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5537417343800037656}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -205,7 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b44a4b2258a22c4aaf8f252e1ab42a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!82 &1930098942226431095
+--- !u!82 &590327419987924552
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -218,7 +218,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: c19bbecbb0ccf7540aae6e9289cf18e0, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 1
   Mute: 0

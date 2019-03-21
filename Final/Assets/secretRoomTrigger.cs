@@ -9,21 +9,24 @@ public class secretRoomTrigger : MonoBehaviour
     // Start is called before the first frame update
 	void OnTriggerStay(Collider col)
     {
-		
-        // Debug.Log("collided");
-        if (col.gameObject.tag == "right")
-        {
-			// if (rightHand.transform.GetComponent<Raycasttest>().isHolding)
-            // {
+		if(m_ObjectCollider.isTrigger)
+		{
+			if (col.gameObject.tag == "right")
+			{
+				// if (rightHand.transform.GetComponent<Raycasttest>().isHolding)
+				// {
 
-			GameObject secretRoomWall = GameObject.Find("/secretRoomWall");
-			secretRoomWall.GetComponent<Rigidbody>().velocity = new Vector3(0, 2, 0);
-				// GameObject secretRoom = GameObject.Find("/secretRoom");
-				// secretRoom.GetComponent<Rigidbody>().velocity = new Vector3(0, 2, 0);
-			// }
-		
-		
-        }
+				GameObject secretRoomWall = GameObject.Find("/secretRoomWall");
+				secretRoomWall.GetComponent<Rigidbody>().velocity = new Vector3(0, 2, 0);
+					// GameObject secretRoom = GameObject.Find("/secretRoom");
+					// secretRoom.GetComponent<Rigidbody>().velocity = new Vector3(0, 2, 0);
+				// }
+			
+			
+			}
+		}
+        // Debug.Log("collided");
+        
 
     }
 	
